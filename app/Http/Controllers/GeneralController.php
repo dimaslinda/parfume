@@ -10,4 +10,14 @@ class GeneralController extends Controller
     {
         return view('index');
     }
+
+    public function products()
+    {
+        return view('products');
+    }
+
+    public function detailproducts()
+    {
+        return view('detailproducts');
+    }
 }
