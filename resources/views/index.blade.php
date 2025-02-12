@@ -88,6 +88,23 @@
         <div class="my-10">
             <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:gap-10 lg:grid-cols-3 xl:grid-cols-4">
 
+                @forelse ($products as $item)
+                <div class="p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-xl drop-shadow-xl transition-all duration-300 ease-in-out transform cursor-pointer group hover:scale-105">
+                    <a href="/detailproducts/{{$item->slug}}" class="flex justify-center">
+                        <img class="mb-5 rounded-t-lg" src="{{$item->getFirstMediaUrl('products')}}" alt="product image" />
+                    </a>
+                    <div class="px-5 pb-5">
+                        <a href="/detailproducts/{{$item->slug}}">
+                            <h5 class="mb-5 text-xl font-semibold tracking-tight capitalize text-titleprod">
+                                {{$item->title}}
+                            </h5>
+                            <div class="text-sm font-normal line-clamp-4 text-abu">
+                                {!! $item->excerpt !!}
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                @empty
                 <div class="p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-xl drop-shadow-xl transition-all duration-300 ease-in-out transform cursor-pointer group hover:scale-105">
                     <a href="/detailproducts" class="flex justify-center">
                         <img class="mb-5 rounded-t-lg" src="{{asset('img/product/first-kiss.png')}}" alt="product image" />
@@ -215,6 +232,7 @@
                         </a>
                     </div>
                 </div>
+                @endforelse
 
             </div>
 
@@ -247,6 +265,23 @@
         <div class="mt-10">
             <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
 
+                @forelse ($bestdeal as $item)
+                <div class="p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-xl drop-shadow-xl transition-all duration-300 ease-in-out transform cursor-pointer group hover:scale-105">
+                    <a href="/detailproducts" class="flex justify-center">
+                        <img class="p-8 rounded-t-lg" src="{{$item->getFirstMediaUrl('products')}}" alt="product image" />
+                    </a>
+                    <div class="px-5 pb-5">
+                        <a href="/detailproducts">
+                            <h5 class="mb-5 text-xl font-semibold tracking-tight capitalize text-titleprod">
+                                {{$item->title}}
+                            </h5>
+                            <div class="text-sm font-normal line-clamp-4 text-abu">
+                                {!! $item->excerpt !!}
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                @empty
                 <div class="p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-xl drop-shadow-xl transition-all duration-300 ease-in-out transform cursor-pointer group hover:scale-105">
                     <a href="/detailproducts" class="flex justify-center">
                         <img class="p-8 rounded-t-lg" src="{{asset('img/product/first-kiss.png')}}" alt="product image" />
@@ -310,6 +345,7 @@
                         </a>
                     </div>
                 </div>
+                @endforelse
             </div>
             <a href="/products" class="flex justify-center">
                 <div class="flex justify-center self-center py-2 mt-20 w-56 rounded-tl-md rounded-tr-[17px] rounded-br-md rounded-bl-[17px] item-center bg-tombol">

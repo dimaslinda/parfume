@@ -48,7 +48,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/products" class="block px-3 py-2 text-black rounded-sm hover:bg-tombol hover:text-white md:hover:bg-transparent md:hover:text-tombol md:p-0 {{route('products') == url()->current() || route('detailproducts') == url()->current() ? 'text-white bg-tombol md:bg-transparent md:text-tombol' : 'text-black'}}">
+                                <a href="/products" class="block px-3 py-2 text-black rounded-sm hover:bg-tombol hover:text-white md:hover:bg-transparent md:hover:text-tombol md:p-0 {{route('products') == url()->current() ? 'text-white bg-tombol md:bg-transparent md:text-tombol' : 'text-black'}}">
                                     produk
                                 </a>
                             </li>

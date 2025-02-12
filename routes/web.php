@@ -6,7 +6,7 @@ use App\Http\Controllers\ProfileController;
 
 Route::get('/', [GeneralController::class, 'index'])->name('home');
 Route::get('/products', [GeneralController::class, 'products'])->name('products');
-Route::get('/detailproducts', [GeneralController::class, 'detailproducts'])->name('detailproducts');
+Route::get('/detailproducts/{slug}', [GeneralController::class, 'detailproducts'])->name('detailproducts');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
