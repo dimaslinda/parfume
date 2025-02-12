@@ -4,7 +4,7 @@
     <div class="container p-6 mx-auto lg:p-10">
         <div class="flex flex-col lg:flex-row">
             <div class="flex flex-1 justify-center items-center self-center max-w-screen-xl">
-                <img src="{{asset('img/general/banner.png')}}" class="object-contain w-full h-full" alt="banner">
+                <img src="{{$detailproducts->getFirstMediaUrl('products')}}" class="object-contain w-full h-full" alt="banner">
             </div>
             <div class="flex flex-col flex-1 items-center self-center max-w-screen-xl">
                 <div class="flex flex-col justify-center px-0 py-10 lg:px-20">

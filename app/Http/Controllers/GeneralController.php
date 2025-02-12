@@ -16,7 +16,8 @@ class GeneralController extends Controller
 
     public function products()
     {
-        return view('products');
+        $products = Product::with('media')->paginate(8);
+        return view('products', compact('products'));
     }
 
     public function detailproducts($slug)
