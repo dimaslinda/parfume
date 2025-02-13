@@ -267,11 +267,11 @@
 
                 @forelse ($bestdeal as $item)
                 <div class="p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-xl drop-shadow-xl transition-all duration-300 ease-in-out transform cursor-pointer group hover:scale-105">
-                    <a href="/detailproducts" class="flex justify-center">
+                    <a href="/detailproducts/{{$item->slug}}" class="flex justify-center">
                         <img class="p-8 rounded-t-lg" src="{{$item->getFirstMediaUrl('products')}}" alt="product image" />
                     </a>
                     <div class="px-5 pb-5">
-                        <a href="/detailproducts">
+                        <a href="/detailproducts/{{$item->slug}}">
                             <h5 class="mb-5 text-xl font-semibold tracking-tight capitalize text-titleprod">
                                 {{$item->title}}
                             </h5>

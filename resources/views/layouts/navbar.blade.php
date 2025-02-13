@@ -58,7 +58,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="block px-3 py-2 text-black rounded-sm hover:bg-tombol hover:text-white md:hover:bg-transparent md:hover:text-tombol md:p-0">
+                                <a href="https://agungwangisentosa.id/artikel/" target="_blank" class="block px-3 py-2 text-black rounded-sm hover:bg-tombol hover:text-white md:hover:bg-transparent md:hover:text-tombol md:p-0">
                                     artikel
                                 </a>
                             </li>

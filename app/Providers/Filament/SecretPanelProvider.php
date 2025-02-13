@@ -26,6 +26,7 @@ class SecretPanelProvider extends PanelProvider
             ->default()
             ->id('secret')
             ->path('secret')
+            ->sidebarCollapsibleOnDesktop()
             ->login()
             ->colors([
                 'primary' => Color::Amber,
