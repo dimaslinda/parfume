@@ -1,15 +1,15 @@
 @extends('layouts.main')
 @section('konten')
-<section class="py-10 pt-0 h-auto md:pt-10">
+<section class="h-auto py-10 pt-0 md:pt-10">
     <div class="container p-6 mx-auto lg:p-10">
         <div class="flex flex-col lg:flex-row">
-            <div class="flex flex-1 justify-center items-center self-center max-w-screen-xl">
+            <div class="flex items-center self-center justify-center flex-1 max-w-screen-xl">
                 <img src="{{asset('img/general/banner.png')}}" class="object-contain w-full h-full" alt="banner">
             </div>
-            <div class="flex flex-col flex-1 items-center self-center max-w-screen-xl">
+            <div class="flex flex-col items-center self-center flex-1 max-w-screen-xl">
                 <div>
                     <hr class="my-5 w-full h-0.5 bg-black rounded-sm border-0 lg:w-48 md:my-8">
-                    <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-center text-black uppercase lg:text-start font-banner md:text-5xl lg:text-6xl lg:tracking-widest">
+                    <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-center text-black uppercase lg:text-start font-banner md:text-5xl lg:text-6xl lg:tracking-widest">
                         muntrue <br> <span class="text-2xl font-medium tracking-tight md:text-3xl lg:text-4xl lg:tracking-widest">hokkaido sunset</span>
                     </h1>
                     <p class="mb-10 text-center text-abu lg:text-start">
@@ -31,11 +31,11 @@
     <div class="container p-6 mx-auto lg:p-10">
         <div class="flex justify-center">
             <div class="self-center lg:flex-1 item-center">
-                <h2 class="mb-10 text-2xl font-bold tracking-widest leading-normal text-center uppercase lg:text-start lg:tracking-widest md:tracking-widest lg:leading-normal md:leading-normal md:text-4xl lg:text-5xl font-banner">
+                <h2 class="mb-10 text-2xl font-bold leading-normal tracking-widest text-center uppercase lg:text-start lg:tracking-widest md:tracking-widest lg:leading-normal md:leading-normal md:text-4xl lg:text-5xl font-banner">
                     temukan karakter <br class="hidden md:block"> anda dalam setiap <br class="hidden md:block"> semprotan
                 </h2>
 
-                <p class="mb-10 text-base tracking-wide leading-relaxed text-justify lg:text-start text-abu">
+                <p class="mb-10 text-base leading-relaxed tracking-wide text-justify lg:text-start text-abu">
                     di setiap aroma tersembunyi kisah, dan <br class="hidden md:block"> muntrue menghadirkan koleksi parfum <br class="hidden md:block"> ekslusif yang dirancang untuk <br class="hidden md:block"> mencerminkan kepribadian, keinginan, dan <br class="hidden md:block"> perjalanan Anda.
                 </p>
 
@@ -59,7 +59,7 @@
         </div>
         <div class="flex-1 flex justify-center items-center bg-[#D6EBFF] py-10">
             <div>
-                <h2 class="mb-5 text-2xl font-bold tracking-widest leading-normal text-center uppercase lg:text-start font-banner lg:text-5xl md:text-4xl lg:tracking-widest md:tracking-widest lg:leading-normal md:leading-normal">
+                <h2 class="mb-5 text-2xl font-bold leading-normal tracking-widest text-center uppercase lg:text-start font-banner lg:text-5xl md:text-4xl lg:tracking-widest md:tracking-widest lg:leading-normal md:leading-normal">
                     muntrue <br class="hidden md:block"> fragrances
                 </h2>
                 <p class="mb-10 text-center lg:text-start text-abu">
@@ -73,12 +73,12 @@
             </div>
         </div>
     </div>
-    <div class="absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
+    <div class="absolute z-10 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
         <img src="{{asset('img/general/parfume.png')}}" class="hidden lg:block lg:w-60 2xl:w-full" alt="parfume">
     </div>
 </section>
 
-<section class="py-10 h-auto">
+<section class="h-auto py-10">
     <div class="container p-6 mx-auto lg:p-10">
         <div class="lg:py-20">
             <h3 class="text-2xl font-bold text-center uppercase text-titleprod lg:text-5xl font-banner">
@@ -88,7 +88,7 @@
         <div class="my-10">
             <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:gap-10 lg:grid-cols-3 xl:grid-cols-4">
 
-                <div class="p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-xl drop-shadow-xl transition-all duration-300 ease-in-out transform cursor-pointer group hover:scale-105">
+                <div class="w-full max-w-sm p-4 transition-all duration-300 ease-in-out transform bg-white border border-gray-200 rounded-lg shadow-xl cursor-pointer drop-shadow-xl group hover:scale-105">
                     <a href="/detailproducts" class="flex justify-center">
                         <img class="mb-5 rounded-t-lg" src="{{asset('img/product/first-kiss.png')}}" alt="product image" />
                     </a>
@@ -104,7 +104,7 @@
                     </div>
                 </div>
 
-                <div class="p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-xl drop-shadow-xl transition-all duration-300 ease-in-out transform cursor-pointer group hover:scale-105">
+                <div class="w-full max-w-sm p-4 transition-all duration-300 ease-in-out transform bg-white border border-gray-200 rounded-lg shadow-xl cursor-pointer drop-shadow-xl group hover:scale-105">
                     <a href="/detailproducts" class="flex justify-center">
                         <img class="mb-5 rounded-t-lg" src="{{asset('img/product/most-wanted.png')}}" alt="product image" />
                     </a>
@@ -120,7 +120,7 @@
                     </div>
                 </div>
 
-                <div class="p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-xl drop-shadow-xl transition-all duration-300 ease-in-out transform cursor-pointer group hover:scale-105">
+                <div class="w-full max-w-sm p-4 transition-all duration-300 ease-in-out transform bg-white border border-gray-200 rounded-lg shadow-xl cursor-pointer drop-shadow-xl group hover:scale-105">
                     <a href="/detailproducts" class="flex justify-center">
                         <img class="mb-5 rounded-t-lg" src="{{asset('img/product/catwalk.png')}}" alt="product image" />
                     </a>
@@ -136,7 +136,7 @@
                     </div>
                 </div>
 
-                <div class="p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-xl drop-shadow-xl transition-all duration-300 ease-in-out transform cursor-pointer group hover:scale-105">
+                <div class="w-full max-w-sm p-4 transition-all duration-300 ease-in-out transform bg-white border border-gray-200 rounded-lg shadow-xl cursor-pointer drop-shadow-xl group hover:scale-105">
                     <a href="/detailproducts" class="flex justify-center">
                         <img class="mb-5 rounded-t-lg" src="{{asset('img/product/hokkaido.png')}}" alt="product image" />
                     </a>
@@ -152,7 +152,7 @@
                     </div>
                 </div>
 
-                <div class="p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-xl drop-shadow-xl transition-all duration-300 ease-in-out transform cursor-pointer group hover:scale-105">
+                <div class="w-full max-w-sm p-4 transition-all duration-300 ease-in-out transform bg-white border border-gray-200 rounded-lg shadow-xl cursor-pointer drop-shadow-xl group hover:scale-105">
                     <a href="/detailproducts" class="flex justify-center">
                         <img class="mb-5 rounded-t-lg" src="{{asset('img/product/mirror.png')}}" alt="product image" />
                     </a>
@@ -168,7 +168,7 @@
                     </div>
                 </div>
 
-                <div class="p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-xl drop-shadow-xl transition-all duration-300 ease-in-out transform cursor-pointer group hover:scale-105">
+                <div class="w-full max-w-sm p-4 transition-all duration-300 ease-in-out transform bg-white border border-gray-200 rounded-lg shadow-xl cursor-pointer drop-shadow-xl group hover:scale-105">
                     <a href="/detailproducts" class="flex justify-center">
                         <img class="mb-5 rounded-t-lg" src="{{asset('img/product/sandtown.png')}}" alt="product image" />
                     </a>
@@ -184,7 +184,7 @@
                     </div>
                 </div>
 
-                <div class="p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-xl drop-shadow-xl transition-all duration-300 ease-in-out transform cursor-pointer group hover:scale-105">
+                <div class="w-full max-w-sm p-4 transition-all duration-300 ease-in-out transform bg-white border border-gray-200 rounded-lg shadow-xl cursor-pointer drop-shadow-xl group hover:scale-105">
                     <a href="/detailproducts" class="flex justify-center">
                         <img class="mb-5 rounded-t-lg" src="{{asset('img/product/busan.png')}}" alt="product image" />
                     </a>
@@ -200,7 +200,7 @@
                     </div>
                 </div>
 
-                <div class="p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-xl drop-shadow-xl transition-all duration-300 ease-in-out transform cursor-pointer group hover:scale-105">
+                <div class="w-full max-w-sm p-4 transition-all duration-300 ease-in-out transform bg-white border border-gray-200 rounded-lg shadow-xl cursor-pointer drop-shadow-xl group hover:scale-105">
                     <a href="/detailproducts" class="flex justify-center">
                         <img class="mb-5 rounded-t-lg" src="{{asset('img/product/moment.png')}}" alt="product image" />
                     </a>
@@ -234,7 +234,7 @@
     </div>
 </section>
 
-<section class="py-10 h-auto">
+<section class="h-auto py-10">
     <div class="container p-6 mx-auto lg:p-32 bg-[#C2DFFB] rounded-lg">
         <div>
             <h3 class="text-2xl font-medium capitalize text-prodgrey">
@@ -247,7 +247,7 @@
         <div class="mt-10">
             <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
 
-                <div class="p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-xl drop-shadow-xl transition-all duration-300 ease-in-out transform cursor-pointer group hover:scale-105">
+                <div class="w-full max-w-sm p-4 transition-all duration-300 ease-in-out transform bg-white border border-gray-200 rounded-lg shadow-xl cursor-pointer drop-shadow-xl group hover:scale-105">
                     <a href="/detailproducts" class="flex justify-center">
                         <img class="p-8 rounded-t-lg" src="{{asset('img/product/first-kiss.png')}}" alt="product image" />
                     </a>
@@ -263,7 +263,7 @@
                     </div>
                 </div>
 
-                <div class="p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-xl drop-shadow-xl transition-all duration-300 ease-in-out transform cursor-pointer group hover:scale-105">
+                <div class="w-full max-w-sm p-4 transition-all duration-300 ease-in-out transform bg-white border border-gray-200 rounded-lg shadow-xl cursor-pointer drop-shadow-xl group hover:scale-105">
                     <a href="/detailproducts" class="flex justify-center">
                         <img class="p-8 rounded-t-lg" src="{{asset('img/product/most-wanted.png')}}" alt="product image" />
                     </a>
@@ -279,7 +279,7 @@
                     </div>
                 </div>
 
-                <div class="p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-xl drop-shadow-xl transition-all duration-300 ease-in-out transform cursor-pointer group hover:scale-105">
+                <div class="w-full max-w-sm p-4 transition-all duration-300 ease-in-out transform bg-white border border-gray-200 rounded-lg shadow-xl cursor-pointer drop-shadow-xl group hover:scale-105">
                     <a href="/detailproducts" class="flex justify-center">
                         <img class="p-8 rounded-t-lg" src="{{asset('img/product/catwalk.png')}}" alt="product image" />
                     </a>
@@ -295,7 +295,7 @@
                     </div>
                 </div>
 
-                <div class="p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-xl drop-shadow-xl transition-all duration-300 ease-in-out transform cursor-pointer group hover:scale-105">
+                <div class="w-full max-w-sm p-4 transition-all duration-300 ease-in-out transform bg-white border border-gray-200 rounded-lg shadow-xl cursor-pointer drop-shadow-xl group hover:scale-105">
                     <a href="/detailproducts" class="flex justify-center">
                         <img class="p-8 rounded-t-lg" src="{{asset('img/product/hokkaido.png')}}" alt="product image" />
                     </a>
