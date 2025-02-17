@@ -4,19 +4,16 @@
     <div class="container p-6 mx-auto lg:p-10">
         <div class="flex flex-col lg:flex-row">
             <div class="flex flex-1 justify-center items-center self-center max-w-screen-xl">
-                <img src="{{asset('img/general/banner.png')}}" class="object-contain w-full h-full" alt="banner">
+                <img src="{{$detailproducts->getFirstMediaUrl('products')}}" class="object-contain w-full h-full" alt="banner">
             </div>
             <div class="flex flex-col flex-1 items-center self-center max-w-screen-xl">
                 <div class="flex flex-col justify-center px-0 py-10 lg:px-20">
                     <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-center text-black uppercase lg:text-start font-banner md:text-5xl lg:text-6xl lg:tracking-widest">
-                        muntrue <br> <span class="text-2xl font-medium tracking-tight md:text-3xl lg:text-4xl lg:tracking-widest">hokkaido sunset</span>
+                        muntrue <br> <span class="text-2xl font-medium tracking-tight md:text-3xl lg:text-4xl lg:tracking-widest">{{ $detailproducts->title }}</span>
                     </h1>
-                    <p class="mb-10 text-justify text-abu">
-                        Hokkaido Sunset dari Muntrue adalah parfum yang menangkap esensi keindahan senja di  Hokkaido, Jepang. Saat matahari mulai tenggelam, langit berubah menjadi warna keemasan  yang memancarkan ketenangan dan pesona alami. Parfum ini memadukan kesegaran alami  dengan kehangatan yang dalam, menciptakan aroma yang maskulin, misterius, dan  menenangkan.
-                    </p>
-                    <p class="mb-10 text-justify text-abu">
-                        Dibuat untuk pria yang memiliki jiwa bebas, tenang, namun tetap penuh daya tarik. Hokkaido  Sunset memberikan keseimbangan sempurna antara kesegaran pegunungan, aroma kayu yang  menenangkan, dan sentuhan rempah yang maskulin.
-                    </p>
+                    <div class="mb-10 text-justify text-abu">
+                        {!! $detailproducts->description !!}
+                    </div>
                 </div>
             </div>
         </div>
@@ -27,7 +24,10 @@
         <h4 class="mb-10 text-4xl font-bold text-center uppercase font-banner md:text-start">
             karakteristik aroma
         </h4>
-        <p class="mb-5 text-base text-abu">
+        <div class="text-abu">
+            {!! str($detailproducts->karakteristik)->sanitizeHtml() !!}
+        </div>
+        {{-- <p class="mb-5 text-base text-abu">
             Aroma Hokkaido Sunset adalah kombinasi dari kesegaran, ketenangan, dan kehangatan  alami, seolah membawa Anda ke dalam perjalanan spiritual di Jepang saat matahari terbenam.
         </p>
 
@@ -83,7 +83,7 @@
             <li>
                 Musk – Aroma lembut yang memberikan daya tarik sensual.
             </li>
-        </ul>
+        </ul> --}}
     </div>
 </section>
 @endsection
