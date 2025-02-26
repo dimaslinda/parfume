@@ -11,4 +11,9 @@ class Product extends Model implements HasMedia
     use InteractsWithMedia;
 
     protected $guarded = [];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

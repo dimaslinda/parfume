@@ -8,4 +8,16 @@
         list-style-type: disc !important;
         padding-left: 30px;
     }
+
+    .btn.active {
+        background-color: #d6ebff;
+        color: #2d5d8d;
+        border: #d6ebff;
+    }
+    .kolom {
+        display: none;
+    }
+    .show {
+        display: block;
+    }
 }
