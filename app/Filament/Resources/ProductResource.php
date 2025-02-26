@@ -75,27 +75,66 @@ class ProductResource extends Resource
 
                         ]),
                         Section::make([
-                        RichEditor::make('karakteristik')
-                        ->required()
-                        ->toolbarButtons([
-                            'bold',
-                            'h2',
-                            'h3',
-                            'redo',
-                            'orderedList',
-                            'strike',
-                            'underline',
-                            'undo',
-                        ])
-                        ->label('Karakteristik')
-                        ->placeholder('Product karakteristik')
-                        ->maxLength(65535),
-                            SpatieMediaLibraryFileUpload::make('image')
+                        SpatieMediaLibraryFileUpload::make('image')
                                 ->required()
-                                ->label('Image')
+                                ->label('Thumbnail')
                                 ->imageEditor()
                                 ->collection('products')
                                 ->image(),
+                        SpatieMediaLibraryFileUpload::make('detailimages')
+                                ->label('Detail Product Images')
+                                ->collection('productimages')
+                                ->image()
+                                ->imageEditor()
+                                ->required(),
+                        SpatieMediaLibraryFileUpload::make('topimages')
+                                ->label('Top Notes')
+                                ->collection('topnotes')
+                                ->multiple()
+                                ->image()
+                                ->maxFiles(3)
+                                ->reorderable()
+                                ->hint('Upload up to 3 images')
+                                ->hintColor('warning')
+                                ->hintIcon('heroicon-s-information-circle')
+                                ->required()
+                                ->imageEditor(),
+                        SpatieMediaLibraryFileUpload::make('middleimages')
+                                ->label('Middle Notes')
+                                ->collection('middlenotes')
+                                ->multiple()
+                                ->image()
+                                ->maxFiles(3)
+                                ->reorderable()
+                                ->hint('Upload up to 3 images')
+                                ->hintColor('warning')
+                                ->hintIcon('heroicon-s-information-circle')
+                                ->required()
+                                ->imageEditor(),
+                        SpatieMediaLibraryFileUpload::make('baseimages')
+                                ->label('Base Notes')
+                                ->collection('basenotes')
+                                ->multiple()
+                                ->image()
+                                ->maxFiles(3)
+                                ->reorderable()
+                                ->hint('Upload up to 3 images')
+                                ->hintColor('warning')
+                                ->hintIcon('heroicon-s-information-circle')
+                                ->required()
+                                ->imageEditor(),
+                        SpatieMediaLibraryFileUpload::make('personalityimages')
+                                ->label('Personality')
+                                ->collection('personality')
+                                ->multiple()
+                                ->image()
+                                ->maxFiles(4)
+                                ->reorderable()
+                                ->hint('Upload up to 4 images')
+                                ->hintColor('warning')
+                                ->hintIcon('heroicon-s-information-circle')
+                                ->required()
+                                ->imageEditor(),
                         Toggle::make('bestdeal')
                             ->label('Best Deal')
                             ->onColor('success')

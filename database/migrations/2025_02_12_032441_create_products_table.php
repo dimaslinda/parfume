@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->text('excerpt');
             $table->text('description');
-            $table->text('karakteristik');
             $table->boolean('bestdeal')->default(false);
             $table->timestamps();
         });

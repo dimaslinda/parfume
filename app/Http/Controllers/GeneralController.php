@@ -22,7 +22,8 @@ class GeneralController extends Controller
 
     public function detailproducts($slug)
     {
+        $kategoriproducts = Product::with('media')->paginate(3);
         $detailproducts = Product::with('media')->where('slug', $slug)->first();
-        return view('detailproducts', compact('detailproducts'));
+        return view('detailproducts', compact('detailproducts', 'kategoriproducts'));
     }
 }

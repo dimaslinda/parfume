@@ -252,7 +252,7 @@
     </div>
 </section>
 
-<section class="py-10 h-auto">
+{{-- <section class="py-10 h-auto">
     <div class="container p-6 mx-auto lg:p-32 bg-[#C2DFFB] rounded-lg">
         <div>
             <h3 class="text-2xl font-medium capitalize text-prodgrey">
@@ -359,6 +359,31 @@
                     </div>
                 </div>
             </a>
+        </div>
+    </div>
+</section> --}}
+
+<section class="pt-10 h-auto">
+    <div class="container p-6 mx-auto lg:p-0 lg:px-10">
+        <div class="flex flex-col-reverse lg:flex-row">
+            <div class="flex flex-col flex-1 items-center self-center max-w-screen-xl">
+                <div>
+                    <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-center text-black uppercase lg:text-start font-banner md:text-5xl lg:text-6xl lg:leading-tight lg:tracking-wide">
+                        BERANGKAT UMRAH BERSAMA MUNTRU!
+                    </h1>
+                    <p class="mb-10 text-center text-abu lg:text-start">
+                        Bergabung menjadi Mintra Affiliate Muntru dan dapatkan <br class="hidden md:block"> berbagai reward dan hadiah utama Umrah!
+                    </p>
+                    <a href="https://api.whatsapp.com/send?phone=6281214599739" target="_blank" class="flex justify-center lg:justify-start">
+                        <div class="px-20 py-5 text-lg font-normal tracking-widest text-white uppercase bg-tombol">
+                            selengkapnya
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="flex flex-1 justify-center items-center self-center mb-5 max-w-screen-xl lg:mb-0">
+                <img src="{{asset('img/general/mitra-beranda.png')}}" class="object-contain w-full h-full" alt="mitra beranda">
+            </div>
         </div>
     </div>
 </section>
