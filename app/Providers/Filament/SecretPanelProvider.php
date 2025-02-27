@@ -26,10 +26,11 @@ class SecretPanelProvider extends PanelProvider
             ->default()
             ->id('secret')
             ->path('secret')
+            ->spa()
             ->sidebarCollapsibleOnDesktop()
             ->login()
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => '#2D5D8D',
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')

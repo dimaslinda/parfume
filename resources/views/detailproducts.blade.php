@@ -14,6 +14,28 @@
                     <div class="mb-10 text-justify text-abu">
                         {!! $detailproducts->description !!}
                     </div>
+
+                    <div class="flex flex-wrap gap-2 justify-center mb-10 lg:justify-start">
+                        @forelse ($detailproducts->tags as $item)
+                        <div class="px-5 py-2 text-sm font-normal tracking-widest text-center uppercase rounded-full border text-abu border-abu">
+                            {{ $item->name ?? '' }}
+                        </div>
+                        @empty
+                        <div class="px-5 py-2 mb-10 text-sm font-normal tracking-widest text-center uppercase rounded-full border text-abu border-abu">
+                            woody
+                        </div>
+                        <div class="px-5 py-2 mb-10 text-sm font-normal tracking-widest text-center uppercase rounded-full border text-abu border-abu">
+                            woody
+                        </div>
+                        <div class="px-5 py-2 mb-10 text-sm font-normal tracking-widest text-center uppercase rounded-full border text-abu border-abu">
+                            woody
+                        </div>
+                        <div class="px-5 py-2 mb-10 text-sm font-normal tracking-widest text-center uppercase rounded-full border text-abu border-abu">
+                            woody
+                        </div>
+                        @endforelse
+
+                    </div>
                     <div>
                         <a href="https://api.whatsapp.com/send?phone=6281214599739" target="_blank" class="flex justify-center lg:justify-start">
                             <div class="px-10 py-5 text-lg font-normal tracking-widest text-white uppercase md:px-20 bg-tombol">

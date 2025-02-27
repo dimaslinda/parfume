@@ -10,8 +10,11 @@ use Filament\Forms\Components\Card;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\SpatieTagsInput;
 use Filament\Forms\Components\Split;
+use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
@@ -20,6 +23,7 @@ use Illuminate\Support\Str;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Tables\Columns\SpatieTagsColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Filters\Filter;
@@ -32,6 +36,12 @@ class ProductResource extends Resource
     protected static ?string $model = Product::class;
 
     protected static ?string $navigationIcon = 'heroicon-s-building-storefront';
+
+    protected static ?string $navigationLabel = 'Products List';
+
+    protected static ?string $navigationGroup = 'Products';
+
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {
@@ -72,7 +82,11 @@ class ProductResource extends Resource
                         ->label('Description')
                         ->placeholder('Product description')
                         ->maxLength(65535),
-
+                        SpatieTagsInput::make('tags')
+                        ->label('Tags')
+                        ->placeholder('Product tags')
+                        ->type('tags')
+                        ->required(),
                         ]),
                         Section::make([
                         SpatieMediaLibraryFileUpload::make('image')
@@ -152,15 +166,15 @@ class ProductResource extends Resource
                 TextColumn::make('title')
                     ->alignCenter()
                     ->searchable(),
-                TextColumn::make('excerpt')
-                    ->html()
-                    ->alignCenter()
-                    ->limit(50),
                 SpatieMediaLibraryImageColumn::make('image')
                     ->collection('products')
                     ->label('Image')
                     ->alignCenter()
                     ->circular(),
+                    SpatieTagsColumn::make('tags')
+                    ->label('Tags')
+                    ->type('tags')
+                    ->alignCenter(),
                 TextColumn::make('created_at')
                     ->alignCenter()
                     ->dateTime(),
