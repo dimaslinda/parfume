@@ -53,7 +53,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="block px-3 py-2 text-black rounded-sm hover:bg-tombol hover:text-white md:hover:bg-transparent md:hover:text-tombol md:p-0">
+                                <a href="/mitra" class="block px-3 py-2 text-black rounded-sm hover:bg-tombol hover:text-white md:hover:bg-transparent md:hover:text-tombol md:p-0 {{route('mitra') == url()->current() ? 'text-white bg-tombol md:bg-transparent md:text-tombol' : 'text-black'}}">
                                     mitra
                                 </a>
                             </li>

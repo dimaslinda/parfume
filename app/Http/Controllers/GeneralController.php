@@ -37,4 +37,9 @@ class GeneralController extends Controller
         $detailproducts = Product::with('media', 'tags')->where('slug', $slug)->first();
         return view('detailproducts', compact('detailproducts', 'kategoriproducts'));
     }
+
+    public function mitra()
+    {
+        return view('mitra');
+    }
 }
