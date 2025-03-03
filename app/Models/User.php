@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -54,5 +55,86 @@ class User extends Authenticatable
     public function sales()
     {
         return $this->hasMany(Sales::class);
+    }
+
+    public function getRank()
+    {
+        // Menggunakan query mentah untuk menghitung peringkat
+        $points = DB::select(DB::raw('
+            SELECT user_id, points,
+                   RANK() OVER (ORDER BY points DESC) as `rank`
+            FROM points
+        '));
+
+        // Konversi hasil menjadi koleksi Laravel
+        $pointsCollection = collect($points);
+
+        // Cari peringkat pengguna berdasarkan user_id
+        $userRank = $pointsCollection->firstWhere('user_id', $this->id);
+
+        return $userRank ? $userRank->rank : null;
+    }
+
+    // Metode untuk mendapatkan tier berdasarkan poin
+    public function getTier()
+    {
+        $points = $this->points->points ?? 0;
+
+        if ($points < 6250) {
+            return 'Bronze';
+        } elseif ($points >= 6250 && $points <= 213750) {
+            return 'Silver';
+        } elseif ($points > 213750 && $points <= 505000) {
+            return 'Gold';
+        } elseif ($points > 505000 && $points <= 10930000) {
+            return 'Platinum';
+        } else {
+            return 'Unranked';
+        }
+    }
+
+    // Metode untuk mendapatkan poin yang dibutuhkan untuk tier berikutnya
+    public function getNextTierPoints()
+    {
+        $points = $this->points->points ?? 0;
+
+        if ($points < 6250) {
+            return 6250;
+        } elseif ($points >= 6250 && $points <= 213750) {
+            return 213750;
+        } elseif ($points > 213750 && $points <= 505000) {
+            return 505000;
+        } elseif ($points > 505000 && $points <= 10930000) {
+            return 10930000;
+        } else {
+            return $points;
+        }
+    }
+
+    // Metode untuk menghitung progres menuju tier berikutnya
+    public function getProgressToNextTier()
+    {
+        $points = $this->points->points ?? 0;
+        $nextTierPoints = $this->getNextTierPoints();
+
+        return min(($points / $nextTierPoints) * 100, 100);
+    }
+
+    // Metode untuk mendapatkan logo tier berikutnya
+    public function getNextTierLogo()
+    {
+        $points = $this->points->points ?? 0;
+
+        if ($points < 6250) {
+            return 'img/tier/silver.png'; // Path ke logo Silver
+        } elseif ($points >= 6250 && $points <= 213750) {
+            return 'img/tier/gold.png'; // Path ke logo Gold
+        } elseif ($points > 213750 && $points <= 505000) {
+            return 'img/tier/platinum.png'; // Path ke logo Platinum
+        } elseif ($points > 505000 && $points <= 10930000) {
+            return 'img/tier/platinum.png'; // Path ke logo Diamond
+        } else {
+            return 'images/unranked.png'; // Path ke logo Unranked
+        }
     }
 }

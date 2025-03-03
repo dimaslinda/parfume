@@ -4,6 +4,16 @@
             <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="{{asset('img/general/logo.png')}}" class="h-16" alt="Agung Wangi Sentosa Logo" />
             </a>
+            @guest
+            <div class="flex items-center space-x-3 md:order-2 md:space-x-0 rtl:space-x-reverse">
+                <a href="/login" class="flex justify-center lg:justify-start">
+                    <div class="px-5 py-2 text-sm font-normal tracking-widest text-white uppercase bg-tombol">
+                        masuk
+                    </div>
+                </a>
+            </div>
+            @endguest
+            @auth
             <div class="flex items-center space-x-3 md:order-2 md:space-x-0 rtl:space-x-reverse">
                 <button type="button" class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                     <span class="sr-only">Open user menu</span>
@@ -12,19 +22,22 @@
                 <!-- Dropdown menu -->
                 <div class="hidden z-50 my-4 text-base list-none bg-white rounded-lg divide-y divide-gray-100 shadow-sm" id="user-dropdown">
                     <div class="px-4 py-3">
-                        <span class="block text-sm text-gray-900">Bonnie Green</span>
-                        <span class="block text-sm text-gray-500 truncate">name@gmail.com</span>
+                        <span class="block text-sm text-gray-900">{{Auth::user()->name}}</span>
+                        <span class="block text-sm text-gray-500 truncate">{{Auth::user()->email}}</span>
                     </div>
                     <ul class="py-2" aria-labelledby="user-menu-button">
                         <li>
-                            <a href="#" class="block px-4 py-2 text-sm text-black hover:bg-tombol hover:text-white">Dashboard</a>
+                            <a href="/dashboard" class="block px-4 py-2 text-sm text-black hover:bg-tombol hover:text-white">Dashboard</a>
                         </li>
                         <li>
                             <a href="#" class="block px-4 py-2 text-sm text-black hover:bg-tombol hover:text-white">Settings</a>
                         </li>
                         </li>
                         <li>
-                            <a href="#" class="block px-4 py-2 text-sm text-black hover:bg-tombol hover:text-white">Sign out</a>
+                            <a href="#" onclick="getElementById('logout').submit()" class="block px-4 py-2 text-sm text-black hover:bg-tombol hover:text-white">Sign out</a>
+                            <form id="logout" action="{{ route('logout') }}" method="post">
+                                @csrf
+                            </form>
                         </li>
                     </ul>
                 </div>
@@ -35,6 +48,7 @@
                     </svg>
                 </button>
             </div>
+            @endauth
             <div class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1" id="navbar-user">
                     <ul class="flex flex-col p-4 mt-4 font-medium uppercase bg-gray-50 rounded-lg border border-gray-100 md:p-0 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white">
                             <li>

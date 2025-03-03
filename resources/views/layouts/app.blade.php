@@ -4,6 +4,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wdth,wght@0,62.5..100,100..900;1,62.5..100,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -14,23 +18,89 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
-
+    <body class="font-poppins">
+        <div class="min-h-screen">
+            @include('layouts.navbar')
             <!-- Page Content -->
             <main>
                 {{ $slot }}
             </main>
         </div>
-    </body>
-</html>
+        <footer class="bg-tombol">
+            <div class="p-4 py-6 mx-auto w-full max-w-screen-xl lg:py-8">
+                <div class="md:flex md:justify-between">
+                <div class="mb-6 md:mb-0">
+                    <a href="/" class="flex flex-col">
+                        <img src="{{asset('img/general/logo-putih.png')}}" class="object-contain mb-5 h-32 md:h-20" alt="agung wangi sentosa Logo" />
+                        <div class="mb-5 font-normal text-white">
+                            0812 1459 9739
+                        </div>
+                        <div class="text-white">
+                            E-mail: info@laparfums.pl
+                        </div>
+                    </a>
+                </div>
+                <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-4">
+                    <div class="col-span-2">
+                        <ul class="font-medium text-[#B5B5B5] capitalize">
+                            <li class="mb-4">
+                                <a href="/" class="hover:underline">tentang kami</a>
+                            </li>
+                            <li class="mb-4">
+                                <a href="/" class="hover:underline">produk</a>
+                            </li>
+                            <li class="mb-4">
+                                <a href="/" class="hover:underline">tentang kami</a>
+                            </li>
+                            <li class="mb-4">
+                                <a href="/" class="hover:underline">blog dan artikel</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-span-2">
+                        <h2 class="mb-6 text-sm font-normal text-white capitalize">terhubung dengan kami</h2>
+                        <div class="flex gap-4 mt-4 sm:justify-center sm:mt-0">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="45" height="46" viewBox="0 0 45 46" fill="none">
+                                    <rect x="0.45" y="1.25005" width="44.1" height="44.1" stroke="white" stroke-width="0.9"/>
+                                    <path d="M32.8505 18.3609C32.7282 17.9246 32.49 17.5296 32.1611 17.2179C31.823 16.8966 31.4085 16.6667 30.9569 16.5501C29.2667 16.1046 22.4951 16.1046 22.4951 16.1046C19.6721 16.0724 16.8498 16.2137 14.0441 16.5276C13.5925 16.6529 13.1788 16.8878 12.8399 17.2116C12.5069 17.532 12.2657 17.9271 12.1397 18.36C11.837 19.9905 11.69 21.6462 11.7005 23.3046C11.6897 24.9615 11.8364 26.6166 12.1397 28.2492C12.263 28.6803 12.5033 29.0736 12.8372 29.3913C13.1711 29.709 13.5869 29.9385 14.0441 30.06C15.7568 30.5046 22.4951 30.5046 22.4951 30.5046C25.3217 30.5367 28.1476 30.3955 30.9569 30.0816C31.4085 29.9649 31.823 29.7351 32.1611 29.4138C32.4941 29.0961 32.7308 28.701 32.8496 28.2708C33.1602 26.6408 33.3112 24.9845 33.3005 23.3253C33.3239 21.659 33.173 19.9949 32.8505 18.36V18.3609ZM20.3423 26.3862V20.2239L25.9763 23.3055L20.3423 26.3862Z" fill="white"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 46 46" fill="none">
+                                    <rect x="0.649951" y="1.25005" width="44.1" height="44.1" stroke="white" stroke-width="0.9"/>
+                                    <path d="M22.697 19.6985C20.7139 19.6985 19.0955 21.3169 19.0955 23.3C19.0955 25.2831 20.7139 26.9015 22.697 26.9015C24.6801 26.9015 26.2985 25.2831 26.2985 23.3C26.2985 21.3169 24.6801 19.6985 22.697 19.6985ZM33.4987 23.3C33.4987 21.8086 33.5122 20.3307 33.4285 18.842C33.3447 17.1128 32.9502 15.5782 31.6858 14.3137C30.4187 13.0466 28.8868 12.6548 27.1576 12.5711C25.6663 12.4873 24.1884 12.5008 22.6997 12.5008C21.2083 12.5008 19.7305 12.4873 18.2418 12.5711C16.5126 12.6548 14.978 13.0493 13.7136 14.3137C12.4465 15.5809 12.0547 17.1128 11.971 18.842C11.8872 20.3334 11.9007 21.8113 11.9007 23.3C11.9007 24.7887 11.8872 26.2693 11.971 27.758C12.0547 29.4872 12.4492 31.0218 13.7136 32.2863C14.9807 33.5534 16.5126 33.9452 18.2418 34.0289C19.7332 34.1127 21.211 34.0992 22.6997 34.0992C24.1911 34.0992 25.669 34.1127 27.1576 34.0289C28.8868 33.9452 30.4214 33.5507 31.6858 32.2863C32.9529 31.0191 33.3447 29.4872 33.4285 27.758C33.5149 26.2693 33.4987 24.7914 33.4987 23.3ZM22.697 28.8414C19.6305 28.8414 17.1557 26.3666 17.1557 23.3C17.1557 20.2334 19.6305 17.7586 22.697 17.7586C25.7635 17.7586 28.2383 20.2334 28.2383 23.3C28.2383 26.3666 25.7635 28.8414 22.697 28.8414ZM28.4653 18.8258C27.7493 18.8258 27.1711 18.2476 27.1711 17.5316C27.1711 16.8156 27.7493 16.2374 28.4653 16.2374C29.1813 16.2374 29.7594 16.8156 29.7594 17.5316C29.7597 17.7016 29.7263 17.87 29.6614 18.0271C29.5964 18.1842 29.5011 18.327 29.3809 18.4472C29.2607 18.5674 29.1179 18.6627 28.9608 18.7277C28.8037 18.7927 28.6353 18.826 28.4653 18.8258Z" fill="white"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 46 46" fill="none">
+                                    <rect x="0.849902" y="1.25005" width="44.1" height="44.1" stroke="white" stroke-width="0.9"/>
+                                    <path d="M32.4999 12.5H13.2999C12.9816 12.5 12.6764 12.6264 12.4513 12.8515C12.2263 13.0765 12.0999 13.3817 12.0999 13.7V32.9C12.0999 33.2183 12.2263 33.5235 12.4513 33.7485C12.6764 33.9736 12.9816 34.1 13.2999 34.1H23.6379V25.748H20.8323V22.478H23.6379V20.078C23.6379 17.288 25.3419 15.7676 27.8379 15.7676C28.6767 15.7652 29.5167 15.8084 30.3519 15.896V18.8H28.6299C27.2763 18.8 27.0123 19.4456 27.0123 20.39V22.472H30.2487L29.8287 25.742H27.0111V34.1H32.4999C32.8181 34.1 33.1233 33.9736 33.3484 33.7485C33.5734 33.5235 33.6999 33.2183 33.6999 32.9V13.7C33.6999 13.3817 33.5734 13.0765 33.3484 12.8515C33.1233 12.6264 32.8181 12.5 32.4999 12.5Z" fill="white"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 46 46" fill="none">
+                                    <rect x="1.0501" y="1.25005" width="44.1" height="44.1" stroke="white" stroke-width="0.9"/>
+                                    <path d="M23.1 12.5C17.1357 12.5 12.3 17.3357 12.3 23.3C12.3 29.2643 17.1357 34.1 23.1 34.1C29.0644 34.1 33.9 29.2643 33.9 23.3C33.9 17.3357 29.0644 12.5 23.1 12.5ZM28.4046 19.8989L26.6316 28.2509C26.5011 28.8431 26.1483 28.9871 25.656 28.7081L22.956 26.7191L21.6546 27.9737C21.5909 28.0562 21.5091 28.1231 21.4155 28.1691C21.3219 28.2151 21.219 28.2391 21.1146 28.2392H21.1101L21.3018 25.4906L26.3059 20.9708C26.5218 20.7791 26.2572 20.6702 25.9701 20.8619L19.788 24.7553L17.124 23.9237C16.548 23.741 16.5318 23.3477 17.2455 23.0651L27.655 19.0529C28.1392 18.8765 28.5603 19.1681 28.4037 19.8998L28.4046 19.8989Z" fill="white"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-6 border-[#B5B5B5] sm:mx-auto lg:my-8" />
+            {{-- <div class="sm:flex sm:items-center sm:justify-between">
+                <span class="text-sm text-[#B5B5B5] sm:text-center">
+                    Образец публичного договора оферты о предоставлении услуг
+                </span>
+                <div class="flex mt-4 text-white sm:justify-center sm:mt-0">
+                    © Интернет-магазин парфюмерии «PARFUMS», 2008—2021
+                </div>
+            </div> --}}
+            </div>
+        </footer>
+
+            @yield('kaki')
+        </body>
+        </html>
+

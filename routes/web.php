@@ -14,9 +14,7 @@ Route::get('/mitra', [GeneralController::class, 'mitra'])->name('mitra');
 Route::get('/filament/sales-form/{user}', [SalesForm::class, '__invoke'])->name('filament.pages.sales-form');
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [GeneralController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

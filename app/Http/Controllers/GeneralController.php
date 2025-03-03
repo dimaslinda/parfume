@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Spatie\Tags\Tag;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class GeneralController extends Controller
 {
@@ -38,8 +40,27 @@ class GeneralController extends Controller
         return view('detailproducts', compact('detailproducts', 'kategoriproducts'));
     }
 
+
     public function mitra()
     {
         return view('mitra');
+    }
+
+
+    public function dashboard()   {
+            $user = auth()->user();
+
+        // Mengambil data peringkat pengguna berdasarkan poin
+        $points = DB::select('
+            SELECT user_id, points,
+                   RANK() OVER (ORDER BY points DESC) as `rank`
+            FROM points
+        ');
+
+        $pointsCollection = collect($points);
+        $userRank = $pointsCollection->firstWhere('user_id', $user->id);
+        $rank = $userRank ? $userRank->rank : null;
+
+        return view('dashboard', compact('user', 'rank'));
     }
 }
