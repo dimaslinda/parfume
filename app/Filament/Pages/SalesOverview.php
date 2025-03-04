@@ -17,6 +17,13 @@ class SalesOverview extends Page implements Tables\Contracts\HasTable
     protected static ?string $navigationGroup = 'Penjualan';
     protected static string $view = 'filament.pages.sales-overview';
 
+    protected static ?string $navigationLabel = 'Penjualan dan Poin';
+
+    public function getTitle(): string
+    {
+        return 'Data Penjualan dan Poin';
+    }
+
     protected function getTableQuery(): Builder
     {
         return User::query()
@@ -27,7 +34,9 @@ class SalesOverview extends Page implements Tables\Contracts\HasTable
     protected function getTableColumns(): array
     {
         return [
-            TextColumn::make('name')->label('Nama Pengguna')->sortable(),
+            TextColumn::make('name')->label('Nama Pengguna')
+            ->searchable()
+            ->sortable(),
             TextColumn::make('sales_sum_quantity')
                 ->label('Total Penjualan')
                 ->sortable(),

@@ -18,6 +18,11 @@ class ManageRewards extends ManageRecords
         ];
     }
 
+    public function getTitle(): string
+    {
+        return 'Data Reward';
+    }
+
     protected function afterSafe(): void
     {
         Notification::make()

@@ -6,9 +6,19 @@ use Filament\Pages;
 use Filament\Panel;
 use Filament\Widgets;
 use Filament\PanelProvider;
+use Filament\Pages\Dashboard;
+use App\Filament\Pages\SalesForm;
 use Filament\Support\Colors\Color;
 use App\Filament\Pages\SalesOverview;
+use Filament\Navigation\NavigationItem;
+use App\Filament\Resources\UserResource;
+use Filament\Navigation\NavigationGroup;
+use App\Filament\Resources\ClaimsResource;
 use Filament\Http\Middleware\Authenticate;
+use Filament\Navigation\NavigationBuilder;
+use App\Filament\Resources\ProductResource;
+use App\Filament\Resources\RewardsResource;
+use App\Filament\Resources\RoleResource;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -33,6 +43,35 @@ class SecretPanelProvider extends PanelProvider
             ->colors([
                 'primary' => '#2D5D8D',
             ])
+            ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
+                return $builder->groups([
+                    NavigationGroup::make()
+                        ->items([
+                            NavigationItem::make('Dashboard')
+                                ->icon('heroicon-o-home')
+                                ->isActiveWhen(fn (): bool => request()->routeIs('filament.admin.pages.dashboard'))
+                                ->url(fn (): string => Dashboard::getUrl()),
+                        ]),
+                    NavigationGroup::make('Produk')
+                        ->items([
+                            ...ProductResource::getNavigationItems(),
+                        ]),
+
+                    NavigationGroup::make('Menu Penjualan')
+                        ->items([
+                            ...SalesForm::getNavigationItems(),
+                            ...SalesOverview::getNavigationItems(),
+                            ...ClaimsResource::getNavigationItems(),
+                            ...RewardsResource::getNavigationItems(),
+                        ]),
+                    NavigationGroup::make('Pengaturan')
+                        ->items([
+                            ...RoleResource::getNavigationItems(),
+                            ...UserResource::getNavigationItems(),
+                        ]),
+
+                ]);
+            })
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([

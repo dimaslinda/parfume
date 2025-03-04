@@ -23,10 +23,16 @@ class SalesForm extends Page implements Forms\Contracts\HasForms
     protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
     protected static ?string $navigationGroup = 'Penjualan';
     protected static string $view = 'filament.pages.sales-form';
+    protected static ?string $navigationLabel = 'Form Total Penjualan';
 
     public function mount($user = null): void
     {
         $this->user_id = $user;
+    }
+
+    public function getTitle(): string
+    {
+        return 'Form Rekap Total Penjualan perhari';
     }
 
     protected function getFormSchema(): array

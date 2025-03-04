@@ -27,6 +27,8 @@ class RewardsResource extends Resource
 
     protected static ?string $navigationGroup = 'Penjualan';
 
+    protected static ?string $navigationLabel = 'Data Reward Yang Tersedia';
+
     public static function form(Form $form): Form
     {
         return $form

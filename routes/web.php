@@ -15,6 +15,7 @@ Route::get('/filament/sales-form/{user}', [SalesForm::class, '__invoke'])->name(
 
 
 Route::get('/dashboard', [GeneralController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::post('/claim-reward/{id}', [GeneralController::class, 'claimReward'])->name('claim-reward')->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

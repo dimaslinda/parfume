@@ -3,15 +3,21 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Filament\Panel;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
+use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\DB;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser, HasMedia
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles, InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
@@ -46,6 +52,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function canAccessPanel(Panel $panel): bool
+{
+    if ($panel->getId() === 'admin') {
+        return $this->hasRole('admin') && $this->hasVerifiedEmail();
+    }
+
+    return true;
+}
+
 
     public function points()
     {
@@ -89,7 +105,7 @@ class User extends Authenticatable
         } elseif ($points > 505000 && $points <= 10930000) {
             return 'Platinum';
         } else {
-            return 'Unranked';
+            return 'Platinum';
         }
     }
 
@@ -136,5 +152,22 @@ class User extends Authenticatable
         } else {
             return 'images/unranked.png'; // Path ke logo Unranked
         }
+    }
+
+    // Metode untuk mendapatkan logo tier
+    public function getTierLogo(): string
+    {
+        return match($this->getTier()) {
+            'Bronze' => 'bronze.png',
+            'Silver' => 'silver.png',
+            'Gold' => 'gold.png',
+            default => 'bronze.png'
+        };
+    }
+
+    // Metode untuk mendapatkan total quantity sales yang terjual
+    public function getTotalSales()
+    {
+        return $this->sales->sum('quantity');
     }
 }
