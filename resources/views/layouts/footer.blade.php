@@ -61,14 +61,6 @@
         </div>
     </div>
     <hr class="my-6 border-[#B5B5B5] sm:mx-auto lg:my-8" />
-    {{-- <div class="sm:flex sm:items-center sm:justify-between">
-        <span class="text-sm text-[#B5B5B5] sm:text-center">
-            Образец публичного договора оферты о предоставлении услуг
-        </span>
-        <div class="flex mt-4 text-white sm:justify-center sm:mt-0">
-            © Интернет-магазин парфюмерии «PARFUMS», 2008—2021
-        </div>
-    </div> --}}
     </div>
 </footer>
 
