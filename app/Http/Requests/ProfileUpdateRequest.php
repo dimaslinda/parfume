@@ -25,6 +25,15 @@ class ProfileUpdateRequest extends FormRequest
                 'max:255',
                 Rule::unique(User::class)->ignore($this->user()->id),
             ],
+            'phone' => ['nullable', 'string', 'max:255', 'regex:/^[0-9]{10,15}$/'],
+            'avatars' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:10240'],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'phone.regex' => 'Nomor telepon tidak valid.',
         ];
     }
 }

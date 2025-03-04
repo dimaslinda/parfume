@@ -17,7 +17,7 @@
             <div class="flex items-center space-x-3 md:order-2 md:space-x-0 rtl:space-x-reverse">
                 <button type="button" class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                     <span class="sr-only">Open user menu</span>
-                    <img class="w-8 h-8 rounded-full" src="{{asset('img/general/default.jpg')}}" alt="user photo">
+                    <img class="w-8 h-8 rounded-full" src="{{ Auth::user()->getFirstMediaUrl('avatars') ?:asset('img/general/default.jpg')}}" alt="user photo">
                 </button>
                 <!-- Dropdown menu -->
                 <div class="hidden z-50 my-4 text-base list-none bg-white rounded-lg divide-y divide-gray-100 shadow-sm" id="user-dropdown">
@@ -30,7 +30,7 @@
                             <a href="/dashboard" class="block px-4 py-2 text-sm text-black hover:bg-tombol hover:text-white">Dashboard</a>
                         </li>
                         <li>
-                            <a href="#" class="block px-4 py-2 text-sm text-black hover:bg-tombol hover:text-white">Settings</a>
+                            <a href="/profile" class="block px-4 py-2 text-sm text-black hover:bg-tombol hover:text-white">Settings</a>
                         </li>
                         </li>
                         <li>

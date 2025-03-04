@@ -221,4 +221,14 @@
             </div>
         </div>
     </div>
+    @section('kaki')
+    <script>
+        // Menghilangkan notifikasi setelah beberapa detik
+        setTimeout(function () {
+            document.querySelectorAll('.toast-container > div').forEach(function (toast) {
+                toast.style.display = 'none';
+            });
+        }, 5000); // Notifikasi akan menghilang setelah 5 detik
+    </script>
+    @endsection
 </x-app-layout>
