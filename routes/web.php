@@ -9,6 +9,7 @@ Route::get('/', [GeneralController::class, 'index'])->name('home');
 Route::get('/products', [GeneralController::class, 'products'])->name('products');
 Route::get('/detailproducts/{slug}', [GeneralController::class, 'detailproducts'])->name('detailproducts');
 Route::get('/mitra', [GeneralController::class, 'mitra'])->name('mitra');
+Route::get('/aboutus', [GeneralController::class, 'aboutus'])->name('aboutus');
 
 // filament custom
 Route::get('/filament/sales-form/{user}', [SalesForm::class, '__invoke'])->name('filament.pages.sales-form');

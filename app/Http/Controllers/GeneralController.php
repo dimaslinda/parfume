@@ -120,4 +120,9 @@ class GeneralController extends Controller
 
         return redirect()->back();
     }
+
+    public function aboutus()
+    {
+        return view('aboutus');
+    }
 }
