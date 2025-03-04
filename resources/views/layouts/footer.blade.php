@@ -2,13 +2,16 @@
     <div class="p-4 py-6 mx-auto w-full max-w-screen-xl lg:py-8">
         <div class="md:flex md:justify-between">
         <div class="mb-6 md:mb-0">
-            <a href="/" class="flex flex-col">
+            <a href="/" class="flex flex-col items-start">
                 <img src="{{asset('img/general/logo-putih.png')}}" class="object-contain mb-5 h-32 md:h-20" alt="agung wangi sentosa Logo" />
                 <div class="mb-5 font-normal text-white">
                     0812 1459 9739
                 </div>
                 <div class="text-white">
-                    E-mail: info@laparfums.pl
+                    E-mail: agungwangisentosa@gmail.com
+                </div>
+                <div class="text-white">
+                    Jl. Bali No. 5 RT 001/001 Dusun Ledok, <br> Desa Pasirian, Kecamatan Pasirian, Kabupaten Lumajang
                 </div>
             </a>
         </div>
