@@ -19,7 +19,7 @@
                         </div>
                         <div class="flex items-start mb-5">
                         <div class="flex items-center h-5">
-                            <input id="remember" type="checkbox" value="" name="remember" class="w-4 h-4 bg-gray-50 rounded-sm border border-gray-300 focus:ring-3 focus:ring-tombol" required />
+                            <input id="remember" type="checkbox" value="" name="remember" class="w-4 h-4 bg-gray-50 rounded-sm border border-gray-300 focus:ring-3 focus:ring-tombol" />
                         </div>
                         <label for="remember" class="text-sm font-medium text-[#BDBDBD] ms-2">Remember me</label>
                         </div>

@@ -80,8 +80,9 @@
                                         <path d="M12.321 7.59725C12.6036 7.15722 13.2468 7.15722 13.5294 7.59725L15.2222 10.2326C15.3194 10.384 15.4699 10.4934 15.644 10.5391L18.6735 11.3346C19.1793 11.4674 19.3781 12.0791 19.0469 12.4839L17.0636 14.9081C16.9496 15.0474 16.8921 15.2244 16.9024 15.404L17.0821 18.5311C17.112 19.0532 16.5917 19.4312 16.1044 19.2414L13.1859 18.1042C13.0183 18.0389 12.8322 18.0389 12.6645 18.1042L9.74603 19.2414C9.25873 19.4312 8.73841 19.0532 8.7684 18.5311L8.948 15.404C8.95832 15.2244 8.90082 15.0474 8.78688 14.9081L6.80355 12.4839C6.47239 12.0791 6.67114 11.4674 7.17697 11.3346L10.2065 10.5391C10.3805 10.4934 10.531 10.384 10.6283 10.2326L12.321 7.59725Z" fill="white"/>
                                     </svg>
                                     <div class="text-[#6298CE] items-center self-center">
-                                        {{$user->points->points ?? 0}} point
+                                        {{ $user->points ? number_format($user->points->points, 0, ',', '.') : 0 }} point
                                     </div>
+
                                 </div>
                                 <div class="flex items-center space-x-2">
                                     <div class="w-full h-2.5 bg-[#F1F1F1] rounded-full">
@@ -126,7 +127,10 @@
                                             Capai
                                         </div>
                                         <div class="text-[#6298CE] font-bold lg:text-3xl">
-                                            {{$item->point_cost}} point
+                                            {{ number_format($item->point_cost, 0, ',', '.') }} point
+                                        </div>
+                                        <div class="text-[#808080] mt-2">
+                                            {!! $item->description !!}
                                         </div>
                                     </div>
                                     <div class="flex-col flex-1 justify-end items-end">
@@ -134,8 +138,9 @@
                                             reward
                                         </div>
                                         <div class="flex justify-end">
-                                            <img src="{{$item->getFirstMediaUrl('rewards')}}" class="w-20 lg:w-32" alt="reward">
+                                            <img src="{{$item->getFirstMediaUrl('rewards')}}" class="w-20" alt="reward">
                                         </div>
+
                                     </div>
                                 </div>
                                 <div class="flex mt-5">
@@ -202,10 +207,10 @@
                                     <div class="flex flex-row flex-1 justify-end items-center self-center space-x-5">
                                         <div>
                                             <div class="font-bold text-end">
-                                                {{ $user->points->points ?? 0 }} point
+                                                {{ $user->points ? number_format($user->points->points, 0, ',', '.') : 0 }} point
                                             </div>
                                             <div class="text-xs text-end">
-                                                {{ $user->getTotalSales() }} pcs terjual
+                                                {{ number_format($user->getTotalSales(), 0, ',', '.') }} pcs terjual
                                             </div>
                                         </div>
                                         <div class="overflow-hidden w-10 h-10 rounded-full md:w-20 md:h-20">
