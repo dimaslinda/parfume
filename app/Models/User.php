@@ -95,11 +95,11 @@ class User extends Authenticatable implements FilamentUser, HasMedia
 
         if ($points < 6250) {
             return 'Bronze';
-        } elseif ($points >= 6250 && $points <= 213750) {
+        } elseif ($points >= 6250 && $points <= 18750) {
             return 'Silver';
-        } elseif ($points > 213750 && $points <= 505000) {
+        } elseif ($points > 18750 && $points <= 125000) {
             return 'Gold';
-        } elseif ($points > 505000 && $points <= 10930000) {
+        } elseif ($points > 125000 && $points <= 375000) {
             return 'Platinum';
         } else {
             return 'Platinum';
@@ -113,12 +113,12 @@ class User extends Authenticatable implements FilamentUser, HasMedia
 
         if ($points < 6250) {
             return 6250;
-        } elseif ($points >= 6250 && $points <= 213750) {
-            return 213750;
-        } elseif ($points > 213750 && $points <= 505000) {
-            return 505000;
-        } elseif ($points > 505000 && $points <= 10930000) {
-            return 10930000;
+        } elseif ($points >= 6250 && $points <= 18750) {
+            return 18750;
+        } elseif ($points > 18750 && $points <= 125000) {
+            return 125000;
+        } elseif ($points > 125000 && $points <= 375000) {
+            return 375000;
         } else {
             return $points;
         }
@@ -140,14 +140,14 @@ class User extends Authenticatable implements FilamentUser, HasMedia
 
         if ($points < 6250) {
             return 'img/tier/silver.png'; // Path ke logo Silver
-        } elseif ($points >= 6250 && $points <= 213750) {
+        } elseif ($points >= 6250 && $points <= 18750) {
             return 'img/tier/gold.png'; // Path ke logo Gold
-        } elseif ($points > 213750 && $points <= 505000) {
+        } elseif ($points > 18750 && $points <= 125000) {
             return 'img/tier/platinum.png'; // Path ke logo Platinum
-        } elseif ($points > 505000 && $points <= 10930000) {
+        } elseif ($points > 125000 && $points <= 375000) {
             return 'img/tier/platinum.png'; // Path ke logo Diamond
         } else {
-            return 'images/unranked.png'; // Path ke logo Unranked
+            return 'img/tier/platinum-1.png'; // Path ke logo Unranked
         }
     }
 
@@ -158,6 +158,7 @@ class User extends Authenticatable implements FilamentUser, HasMedia
             'Bronze' => 'bronze.png',
             'Silver' => 'silver.png',
             'Gold' => 'gold.png',
+            'Platinum' => 'platinum.png',
             default => 'bronze.png'
         };
     }

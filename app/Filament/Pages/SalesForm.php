@@ -29,6 +29,7 @@ class SalesForm extends Page implements Forms\Contracts\HasForms
     {
         $this->user_id = $user;
     }
+    public bool $isLoading = false;
 
     public function getTitle(): string
     {
@@ -84,8 +85,7 @@ class SalesForm extends Page implements Forms\Contracts\HasForms
             ['points'  => 0]
         );
 
-        $currentPoints = $pointRecord->points;
-        $pointsPerSale = $this->calculatePointsPerSale($currentPoints);
+        $pointsPerSale = $this->calculatePointsPerSale();
 
         $pointsEarned = $quantity * $pointsPerSale;
 
@@ -96,7 +96,7 @@ class SalesForm extends Page implements Forms\Contracts\HasForms
         ]);
 
         $pointRecord->update([
-            'points' => $currentPoints + $pointsEarned
+            'points' => $pointRecord->points + $pointsEarned
         ]);
 
         Notification::make()
@@ -106,26 +106,13 @@ class SalesForm extends Page implements Forms\Contracts\HasForms
             ->send();
 
         $this->form->fill([]);
+        $this->isLoading = false;
+
+        $this->redirect(route('filament.pages.sales-overview'));
     }
 
-    protected function calculatePointsPerSale($currentPoints)
+    protected function calculatePointsPerSale()
     {
-        if ($currentPoints < 6250) {
-            return 25;
-        } elseif ($currentPoints < 126250) {
-            return 30;
-        } elseif ($currentPoints < 213750) {
-            return 35;
-        } elseif ($currentPoints < 225000) {
-            return 45;
-        } elseif ($currentPoints < 280000) {
-            return 55;
-        } elseif ($currentPoints < 505000) {
-            return 75;
-        } elseif ($currentPoints < 930000) {
-            return 85;
-        } else {
-            return 200;
-        }
+        return 25;
     }
 }

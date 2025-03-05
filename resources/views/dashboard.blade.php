@@ -70,6 +70,16 @@
                                 </div>
                             </div>
                             @endif
+                            @if ($user->getTier() == 'Platinum' )
+                            <div class="flex space-x-2">
+                                <div class="overflow-hidden items-center w-7 h-7 rounded-full md:w-10 md:h-10">
+                                    <img src="{{asset('img/tier/platinum.png')}}" class="object-cover w-full h-full" alt="tier">
+                                </div>
+                                <div class="items-center self-center text-[#5B5959] italic font-bold md:text-xl uppercase">
+                                    {{$user->getTier()}}
+                                </div>
+                            </div>
+                            @endif
                             <div class="py-5 text-xl font-bold text-black line-clamp-2">
                                 {{Auth()->user()->name}}
                             </div>
