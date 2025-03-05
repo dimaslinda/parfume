@@ -54,6 +54,11 @@ class SalesOverview extends Page implements Tables\Contracts\HasTable
                 ->url(fn (User $record) => route('filament.pages.sales-form', ['user' => $record->id]))
                 ->color('warning')
                 ->icon('heroicon-o-pencil'),
+                Action::make('detail')
+                ->label('Detail Penjualan')
+                ->url(fn (User $record) => route('filament.pages.sales-detail', ['user' => $record->id]))
+                ->color('primary')
+                ->icon('heroicon-o-eye'),
         ];
     }
 
