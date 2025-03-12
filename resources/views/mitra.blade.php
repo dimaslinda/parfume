@@ -7,7 +7,7 @@
             <div class="flex flex-col flex-1 items-center self-center max-w-screen-xl">
                 <div>
                     <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-center uppercase text-tombol lg:text-start font-banner md:text-5xl lg:text-6xl 2xl:text-7xl lg:tracking-wide">
-                        muntrue <br> affiliate
+                        muntru <br> affiliate
                     </h1>
                     <h3 class="my-5 text-3xl font-semibold text-center text-black uppercase lg:text-start font-banner">
                         Jual parfum bisa berangkat umrah!

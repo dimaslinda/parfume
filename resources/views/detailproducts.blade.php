@@ -9,7 +9,7 @@
             <div class="flex flex-col flex-1 items-center self-center max-w-screen-xl">
                 <div class="flex flex-col justify-center px-0 py-10 lg:px-20">
                     <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-center text-black uppercase lg:text-start font-banner md:text-5xl lg:text-6xl lg:tracking-widest">
-                        muntrue <br> <span class="text-2xl font-medium tracking-tight md:text-3xl lg:text-4xl lg:tracking-widest">{{ $detailproducts->title }}</span>
+                        muntru <br> <span class="text-2xl font-medium tracking-tight md:text-3xl lg:text-4xl lg:tracking-widest">{{ $detailproducts->title }}</span>
                     </h1>
                     <div class="mb-10 text-justify text-abu">
                         {!! $detailproducts->description !!}

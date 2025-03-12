@@ -10,7 +10,7 @@
                 <div>
                     <hr class="my-5 w-full h-0.5 bg-black rounded-sm border-0 lg:w-48 md:my-8">
                     <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-center text-black uppercase lg:text-start font-banner md:text-5xl lg:text-6xl lg:tracking-widest">
-                        muntrue <br> <span class="text-2xl font-medium tracking-tight md:text-3xl lg:text-4xl lg:tracking-widest">hokkaido sunset</span>
+                        muntru <br> <span class="text-2xl font-medium tracking-tight md:text-3xl lg:text-4xl lg:tracking-widest">hokkaido sunset</span>
                     </h1>
                     <p class="mb-10 text-center text-abu lg:text-start">
                         Satu perjalanan ke senja Hokkaido. Biarkan aromanya <br class="hidden md:block"> mengiringi kisah keberanian dan ketangguhan Anda.
@@ -36,7 +36,7 @@
                 </h2>
 
                 <p class="mb-10 text-base tracking-wide leading-relaxed text-justify lg:text-start text-abu">
-                    di setiap aroma tersembunyi kisah, dan <br class="hidden md:block"> muntrue menghadirkan koleksi parfum <br class="hidden md:block"> ekslusif yang dirancang untuk <br class="hidden md:block"> mencerminkan kepribadian, keinginan, dan <br class="hidden md:block"> perjalanan Anda.
+                    di setiap aroma tersembunyi kisah, dan <br class="hidden md:block"> muntru menghadirkan koleksi parfum <br class="hidden md:block"> ekslusif yang dirancang untuk <br class="hidden md:block"> mencerminkan kepribadian, keinginan, dan <br class="hidden md:block"> perjalanan Anda.
                 </p>
 
                 <a href="https://api.whatsapp.com/send?phone=6281214599739 " target="_blank" class="flex justify-center lg:justify-start">
@@ -60,7 +60,7 @@
         <div class="flex-1 flex justify-center items-center bg-[#D6EBFF] py-10">
             <div>
                 <h2 class="mb-5 text-2xl font-bold tracking-widest leading-normal text-center uppercase lg:text-start font-banner lg:text-5xl md:text-4xl lg:tracking-widest md:tracking-widest lg:leading-normal md:leading-normal">
-                    muntrue <br class="hidden md:block"> fragrances
+                    muntru <br class="hidden md:block"> fragrances
                 </h2>
                 <p class="mb-10 text-center lg:text-start text-abu">
                     Aroma yang lembut hingga maskulin yang <br class="hidden lg:block"> memikat, setiap varian membawa <br class="hidden lg:block"> pengalaman unik yang melekat dalam <br class="hidden lg:block"> ingatan.
@@ -82,7 +82,7 @@
     <div class="container p-6 mx-auto lg:p-10">
         <div class="lg:py-20">
             <h3 class="text-2xl font-bold text-center uppercase text-titleprod lg:text-5xl font-banner">
-                muntrue variance
+                muntru variance
             </h3>
         </div>
         <div class="my-10">
