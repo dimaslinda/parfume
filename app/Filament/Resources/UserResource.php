@@ -57,7 +57,7 @@ class UserResource extends Resource
                         ->collection('avatars')
                         ->label('Poto Profile')
                         ->maxFiles(1)
-                        ->required()
+                        // ->required()
                         ->image(),
                 ])
             ]);
