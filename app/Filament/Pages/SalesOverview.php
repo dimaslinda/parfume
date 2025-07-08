@@ -27,21 +27,21 @@ class SalesOverview extends Page implements Tables\Contracts\HasTable
     protected function getTableQuery(): Builder
     {
         return User::query()
-            ->withSum('sales', 'quantity')
-            ->with('points');
+            ->withSum('sales', 'quantity');
     }
 
     protected function getTableColumns(): array
     {
         return [
             TextColumn::make('name')->label('Nama Pengguna')
-            ->searchable()
-            ->sortable(),
+                ->searchable()
+                ->sortable(),
             TextColumn::make('sales_sum_quantity')
                 ->label('Total Penjualan')
                 ->sortable(),
-            TextColumn::make('points.points')
+            TextColumn::make('total_points')
                 ->label('Total Poin')
+                ->getStateUsing(fn($record) => $record->total_points)
                 ->sortable(),
         ];
     }
@@ -51,15 +51,14 @@ class SalesOverview extends Page implements Tables\Contracts\HasTable
         return [
             Action::make('edit')
                 ->label('Tambah Point')
-                ->url(fn (User $record) => route('filament.pages.sales-form', ['user' => $record->id]))
+                ->url(fn(User $record) => route('filament.pages.sales-form', ['user' => $record->id]))
                 ->color('warning')
                 ->icon('heroicon-o-pencil'),
-                Action::make('detail')
+            Action::make('detail')
                 ->label('Detail Penjualan')
-                ->url(fn (User $record) => route('filament.pages.sales-detail', ['user' => $record->id]))
+                ->url(fn(User $record) => route('filament.pages.sales-detail', ['user' => $record->id]))
                 ->color('primary')
                 ->icon('heroicon-o-eye'),
         ];
     }
-
 }

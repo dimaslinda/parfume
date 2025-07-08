@@ -12,6 +12,7 @@ use App\Models\Points;
 use App\Models\User;
 use Filament\Forms\Components\Card;
 use Illuminate\Support\Facades\Auth;
+use App\Models\PointHistory;
 
 class SalesForm extends Page implements Forms\Contracts\HasForms
 {
@@ -39,20 +40,20 @@ class SalesForm extends Page implements Forms\Contracts\HasForms
     protected function getFormSchema(): array
     {
         return [
-           Card::make([
-        Select::make('user_id')
-            ->label('Pilih Pengguna')
-            ->options(User::all()->pluck('name', 'id')->toArray())
-            ->searchable()
-            ->default($this->user_id)
-            ->required(),
-        TextInput::make('quantity')
-            ->label('Jumlah Penjualan')
-            ->numeric()
-            ->minValue(1)
-            ->validationAttribute('Jumlah Penjualan harus positif')
-            ->required(),
-           ])
+            Card::make([
+                Select::make('user_id')
+                    ->label('Pilih Pengguna')
+                    ->options(User::all()->pluck('name', 'id')->toArray())
+                    ->searchable()
+                    ->default($this->user_id)
+                    ->required(),
+                TextInput::make('quantity')
+                    ->label('Jumlah Penjualan')
+                    ->numeric()
+                    ->minValue(1)
+                    ->validationAttribute('Jumlah Penjualan harus positif')
+                    ->required(),
+            ])
         ];
     }
 
@@ -80,13 +81,7 @@ class SalesForm extends Page implements Forms\Contracts\HasForms
             return;
         }
 
-        $pointRecord = Points::firstOrCreate(
-            ['user_id' => $user->id],
-            ['points'  => 0]
-        );
-
         $pointsPerSale = $this->calculatePointsPerSale();
-
         $pointsEarned = $quantity * $pointsPerSale;
 
         Sales::create([
@@ -95,9 +90,28 @@ class SalesForm extends Page implements Forms\Contracts\HasForms
             'points_earned' => $pointsEarned,
         ]);
 
-        $pointRecord->update([
-            'points' => $pointRecord->points + $pointsEarned
+        // Catat ke point_histories untuk user (personal_sale)
+        PointHistory::create([
+            'user_id' => $user->id,
+            'source_user_id' => null,
+            'amount' => $pointsEarned,
+            'type' => 'personal_sale',
+            'description' => 'Poin dari penjualan sendiri',
         ]);
+
+        // Jika ada sponsor/upline, berikan 10% poin ke sponsor (downline_sale)
+        if ($user->sponsor_id) {
+            $uplinePoints = (int) round($pointsEarned * 0.1);
+            if ($uplinePoints > 0) {
+                PointHistory::create([
+                    'user_id' => $user->sponsor_id,
+                    'source_user_id' => $user->id,
+                    'amount' => $uplinePoints,
+                    'type' => 'downline_sale',
+                    'description' => 'Poin dari penjualan downline: ' . $user->name,
+                ]);
+            }
+        }
 
         Notification::make()
             ->title("Penjualan berhasil disimpan.")

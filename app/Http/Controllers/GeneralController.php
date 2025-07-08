@@ -35,7 +35,7 @@ class GeneralController extends Controller
 
         $tags = $produk->tags->pluck('name');
 
-        if($tags) {
+        if ($tags) {
             $kategoriproducts = Product::with('media', 'tags')->withAnyTagsOfAnyType($tags)->paginate(3);
         } else {
             $kategoriproducts = Product::with('media', 'tags')->orderBy('id', 'desc')->paginate(3);
@@ -52,15 +52,9 @@ class GeneralController extends Controller
     }
 
 
-    public function dashboard()   {
+    public function dashboard()
+    {
         $user = Auth::user();
-
-        // Mengambil data peringkat pengguna berdasarkan poin
-        $points = DB::select('
-            SELECT user_id, points,
-                   RANK() OVER (ORDER BY points DESC) as `rank`
-            FROM points
-        ');
 
         $claimedRewards = Claims::where('user_id', $user->id)->pluck('reward_id')->toArray();
         $claims = Claims::where('user_id', $user->id)->get()->keyBy('reward_id');
@@ -69,26 +63,24 @@ class GeneralController extends Controller
         $rewards = Rewards::orderBy('point_cost', 'asc')->get();
 
         // Mengurutkan reward sehingga yang sudah di-claim atau di-reject berada di bawah
-        $rewards = $rewards->sortBy(function($reward) use ($claims) {
+        $rewards = $rewards->sortBy(function ($reward) use ($claims) {
             if (isset($claims[$reward->id])) {
                 return $claims[$reward->id]->status == 'approved' || $claims[$reward->id]->status == 'rejected' ? 1 : 0;
             }
             return 0;
         });
 
+        // Ambil semua user dan urutkan berdasarkan total_points
+        $users = User::with('sales')
+            ->get()
+            ->sortByDesc(function ($user) {
+                return $user->total_points;
+            })->values();
 
-        $users = User::with(['points', 'sales'])
-        ->get()
-        ->sortByDesc(function ($user) {
-            return $user->points->points ?? 0;
-        })->values();
-
-
-        $pointsCollection = collect($points);
-        $userRank = $pointsCollection->firstWhere('user_id', $user->id);
-        $rank = $userRank ? $userRank->rank : null;
-
-
+        // Hitung ranking user
+        $rank = $users->search(function ($u) use ($user) {
+            return $u->id === $user->id;
+        }) + 1;
 
         return view('dashboard', compact('user', 'rank', 'rewards', 'claims', 'claimedRewards', 'users'));
     }
@@ -103,17 +95,24 @@ class GeneralController extends Controller
             return redirect()->back();
         }
 
-        $pointRecord = Points::where('user_id', $user->id)->first();
-
-        if ($pointRecord->points < $reward->point_cost) {
+        if ($user->total_points < $reward->point_cost) {
             session()->flash('error', 'Poin Anda tidak mencukupi untuk mengklaim reward ini.');
             return redirect()->back();
         }
 
-        Claims::create([
+        // Catat pengurangan poin di point_histories
+        \App\Models\PointHistory::create([
+            'user_id' => $user->id,
+            'source_user_id' => null,
+            'amount' => -$reward->point_cost,
+            'type' => 'redeem',
+            'description' => 'Redeem reward: ' . $reward->name,
+        ]);
+
+        \App\Models\Claims::create([
             'user_id'   => $user->id,
             'reward_id' => $reward->id,
-            'status'    => 'pending', // Ubah status klaim menjadi 'approved'
+            'status'    => 'pending',
         ]);
 
         session()->flash('success', "Reward {$reward->name} berhasil diklaim.");

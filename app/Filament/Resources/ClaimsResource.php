@@ -30,12 +30,20 @@ class ClaimsResource extends Resource
     {
         return $form
             ->schema([
+                Select::make('user_id')
+                    ->label('User')
+                    ->relationship('user', 'name')
+                    ->required(),
+                Select::make('reward_id')
+                    ->label('Reward')
+                    ->relationship('reward', 'name')
+                    ->required(),
                 Select::make('status')
                     ->options([
                         'pending' => 'Pending',
                         'approved' => 'Approved',
                         'rejected' => 'Rejected',
-                    ])
+                    ]),
             ]);
     }
 
@@ -55,7 +63,7 @@ class ClaimsResource extends Resource
                     ->sortable()
                     ->label('Poin yang dibutuhkan')
                     ->alignCenter(),
-                TextColumn::make('user.points.points')
+                TextColumn::make('user.total_points')
                     ->alignCenter()
                     ->label('Poin Pengguna'),
                 TextColumn::make('status')

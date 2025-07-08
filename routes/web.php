@@ -5,6 +5,8 @@ use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\ProfileController;
 use App\Filament\Pages\SalesForm;
 use App\Filament\Pages\SalesOverview;
+use App\Filament\Pages\SalesDetail;
+use App\Http\Controllers\ReportOverviewExportController;
 
 
 Route::get('/', [GeneralController::class, 'index'])->name('home');
@@ -16,7 +18,6 @@ Route::get('/aboutus', [GeneralController::class, 'aboutus'])->name('aboutus');
 // filament custom
 Route::get('/filament/sales-form/{user}', [SalesForm::class, '__invoke'])->name('filament.pages.sales-form');
 Route::get('/sales-overview', SalesOverview::class)->name('filament.pages.sales-overview');
-use App\Filament\Pages\SalesDetail;
 
 Route::get('/sales-detail/{user}', SalesDetail::class)->name('filament.pages.sales-detail');
 
@@ -32,4 +33,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+Route::get('/report-overview/export', [ReportOverviewExportController::class, 'export'])->name('report-overview.export');
+
+require __DIR__ . '/auth.php';

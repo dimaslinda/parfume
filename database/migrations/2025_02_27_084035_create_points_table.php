@@ -11,16 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('points', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id')->unique();
-            $table->bigInteger('points')->default(0);
-            $table->timestamps();
-
-            $table->foreign('user_id')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
-        });
+        // Tidak ada apa-apa di sini, points sudah tidak dipakai
     }
 
     /**

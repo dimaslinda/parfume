@@ -28,6 +28,11 @@ use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use App\Filament\Pages\ReportOverview;
+use App\Filament\Widgets\SalesChart;
+use App\Filament\Widgets\DownlineGrowthChart;
+use App\Filament\Widgets\PointHistoryChart;
+use App\Filament\Widgets\RewardRedeemChart;
 
 class SecretPanelProvider extends PanelProvider
 {
@@ -49,8 +54,8 @@ class SecretPanelProvider extends PanelProvider
                         ->items([
                             NavigationItem::make('Dashboard')
                                 ->icon('heroicon-o-home')
-                                ->isActiveWhen(fn (): bool => request()->routeIs('filament.admin.pages.dashboard'))
-                                ->url(fn (): string => Dashboard::getUrl()),
+                                ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.pages.dashboard'))
+                                ->url(fn(): string => Dashboard::getUrl()),
                         ]),
                     NavigationGroup::make('Produk')
                         ->items([
@@ -63,6 +68,7 @@ class SecretPanelProvider extends PanelProvider
                             ...SalesOverview::getNavigationItems(),
                             ...ClaimsResource::getNavigationItems(),
                             ...RewardsResource::getNavigationItems(),
+                            ...ReportOverview::getNavigationItems(),
                         ]),
                     NavigationGroup::make('Pengaturan')
                         ->items([
@@ -81,6 +87,10 @@ class SecretPanelProvider extends PanelProvider
             ->widgets([
                 // Widgets\AccountWidget::class,
                 // Widgets\FilamentInfoWidget::class,
+                SalesChart::class,
+                DownlineGrowthChart::class,
+                PointHistoryChart::class,
+                RewardRedeemChart::class,
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -98,9 +108,10 @@ class SecretPanelProvider extends PanelProvider
             ]);
     }
     public function pages(): array
-{
-    return [
-        SalesOverview::class,
-    ];
-}
+    {
+        return [
+            SalesOverview::class,
+            ReportOverview::class,
+        ];
+    }
 }

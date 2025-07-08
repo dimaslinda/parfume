@@ -24,12 +24,7 @@ class User extends Authenticatable implements FilamentUser, HasMedia
      *
      * @var list<string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'phone',
-        'password',
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -55,14 +50,8 @@ class User extends Authenticatable implements FilamentUser, HasMedia
     }
 
     public function canAccessPanel(Panel $panel): bool
-{
-    return $this->hasRole('Admin');
-}
-
-
-    public function points()
     {
-        return $this->hasOne(Points::class);
+        return $this->hasRole('Admin');
     }
 
     public function sales()
@@ -91,7 +80,7 @@ class User extends Authenticatable implements FilamentUser, HasMedia
     // Metode untuk mendapatkan tier berdasarkan poin
     public function getTier()
     {
-        $points = $this->points->points ?? 0;
+        $points = $this->total_points;
 
         if ($points < 6250) {
             return 'Bronze';
@@ -109,7 +98,7 @@ class User extends Authenticatable implements FilamentUser, HasMedia
     // Metode untuk mendapatkan poin yang dibutuhkan untuk tier berikutnya
     public function getNextTierPoints()
     {
-        $points = $this->points->points ?? 0;
+        $points = $this->total_points;
 
         if ($points < 6250) {
             return 6250;
@@ -127,7 +116,7 @@ class User extends Authenticatable implements FilamentUser, HasMedia
     // Metode untuk menghitung progres menuju tier berikutnya
     public function getProgressToNextTier()
     {
-        $points = $this->points->points ?? 0;
+        $points = $this->total_points;
         $nextTierPoints = $this->getNextTierPoints();
 
         return min(($points / $nextTierPoints) * 100, 100);
@@ -136,7 +125,7 @@ class User extends Authenticatable implements FilamentUser, HasMedia
     // Metode untuk mendapatkan logo tier berikutnya
     public function getNextTierLogo()
     {
-        $points = $this->points->points ?? 0;
+        $points = $this->total_points;
 
         if ($points < 6250) {
             return 'img/tier/silver.png'; // Path ke logo Silver
@@ -154,7 +143,7 @@ class User extends Authenticatable implements FilamentUser, HasMedia
     // Metode untuk mendapatkan logo tier
     public function getTierLogo(): string
     {
-        return match($this->getTier()) {
+        return match ($this->getTier()) {
             'Bronze' => 'bronze.png',
             'Silver' => 'silver.png',
             'Gold' => 'gold.png',
@@ -167,5 +156,48 @@ class User extends Authenticatable implements FilamentUser, HasMedia
     public function getTotalSales()
     {
         return $this->sales->sum('quantity');
+    }
+
+    public function pointHistories()
+    {
+        return $this->hasMany(\App\Models\PointHistory::class);
+    }
+
+    public function getTotalPointsAttribute()
+    {
+        return $this->pointHistories()->sum('amount');
+    }
+
+    public function sponsor()
+    {
+        return $this->belongsTo(User::class, 'sponsor_id');
+    }
+
+    public function downlines()
+    {
+        return $this->hasMany(User::class, 'sponsor_id');
+    }
+
+    /**
+     * Ambil seluruh jaringan downline (tree) user secara rekursif.
+     */
+    public function downlineTree($maxDepth = 5, $currentDepth = 1)
+    {
+        if ($maxDepth > 0 && $currentDepth > $maxDepth) {
+            return collect();
+        }
+        return $this->downlines()->with(['downlines' => function ($q) use ($maxDepth, $currentDepth) {
+            $q->with(['downlines' => function ($q2) use ($maxDepth, $currentDepth) {
+                $q2->with('downlines');
+            }]);
+        }])->get()->map(function ($downline) use ($maxDepth, $currentDepth) {
+            $downline->downline_tree = $downline->downlineTree($maxDepth, $currentDepth + 1);
+            return $downline;
+        });
+    }
+
+    public function claims()
+    {
+        return $this->hasMany(\App\Models\Claims::class);
     }
 }
