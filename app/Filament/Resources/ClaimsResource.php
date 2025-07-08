@@ -26,6 +26,12 @@ class ClaimsResource extends Resource
 
     protected static ?string $navigationLabel = 'Pengajuan Reward';
 
+    /**
+     * Skema form untuk create/edit klaim reward.
+     *
+     * @param Form $form
+     * @return Form
+     */
     public static function form(Form $form): Form
     {
         return $form
@@ -47,6 +53,12 @@ class ClaimsResource extends Resource
             ]);
     }
 
+    /**
+     * Skema tabel untuk daftar klaim reward.
+     *
+     * @param Table $table
+     * @return Table
+     */
     public static function table(Table $table): Table
     {
         return $table
@@ -97,6 +109,11 @@ class ClaimsResource extends Resource
             ]);
     }
 
+    /**
+     * Daftar halaman (pages) yang tersedia untuk resource ini.
+     *
+     * @return array
+     */
     public static function getPages(): array
     {
         return [

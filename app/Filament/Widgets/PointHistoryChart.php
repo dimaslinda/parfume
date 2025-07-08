@@ -10,6 +10,11 @@ class PointHistoryChart extends ChartWidget
 {
     protected static ?string $heading = 'Perolehan Poin per Bulan';
 
+    /**
+     * Ambil data perolehan poin per bulan untuk chart.
+     *
+     * @return array
+     */
     protected function getData(): array
     {
         $points = PointHistory::where('amount', '>', 0)
@@ -33,6 +38,11 @@ class PointHistoryChart extends ChartWidget
         ];
     }
 
+    /**
+     * Opsi chart (warna, label, dsb).
+     *
+     * @return array
+     */
     protected function getOptions(): array
     {
         return [
@@ -78,6 +88,11 @@ class PointHistoryChart extends ChartWidget
         ];
     }
 
+    /**
+     * Tipe chart yang digunakan.
+     *
+     * @return string
+     */
     protected function getType(): string
     {
         return 'line';

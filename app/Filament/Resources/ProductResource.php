@@ -43,6 +43,12 @@ class ProductResource extends Resource
 
     protected static ?int $navigationSort = 1;
 
+    /**
+     * Skema form untuk create/edit produk.
+     *
+     * @param Form $form
+     * @return Form
+     */
     public static function form(Form $form): Form
     {
         return $form
@@ -51,57 +57,57 @@ class ProductResource extends Resource
                     Split::make([
                         Section::make([
                             TextInput::make('title')
-                        ->required()
-                        ->label('Title')
-                        ->placeholder('Product title')
-                        ->live(true)
-                        ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state)))
-                        ->maxLength(255),
-                    TextInput::make('slug')
-                        ->required()
-                        ->label('Slug')
-                        ->placeholder('Product slug')
-                        ->readOnly(),
-                    RichEditor::make('excerpt')
-                        ->required()
-                        ->toolbarButtons([])
-                        ->label('Excerpt')
-                        ->placeholder('Product excerpt')
-                        ->maxLength(65535),
-                    RichEditor::make('description')
-                        ->required()
-                        ->toolbarButtons([
-                            'bold',
-                            'h2',
-                            'h3',
-                            'redo',
-                            'strike',
-                            'underline',
-                            'undo',
-                        ])
-                        ->label('Description')
-                        ->placeholder('Product description')
-                        ->maxLength(65535),
-                        SpatieTagsInput::make('tags')
-                        ->label('Tags')
-                        ->placeholder('Product tags')
-                        ->type('tags')
-                        ->required(),
+                                ->required()
+                                ->label('Title')
+                                ->placeholder('Product title')
+                                ->live(true)
+                                ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state)))
+                                ->maxLength(255),
+                            TextInput::make('slug')
+                                ->required()
+                                ->label('Slug')
+                                ->placeholder('Product slug')
+                                ->readOnly(),
+                            RichEditor::make('excerpt')
+                                ->required()
+                                ->toolbarButtons([])
+                                ->label('Excerpt')
+                                ->placeholder('Product excerpt')
+                                ->maxLength(65535),
+                            RichEditor::make('description')
+                                ->required()
+                                ->toolbarButtons([
+                                    'bold',
+                                    'h2',
+                                    'h3',
+                                    'redo',
+                                    'strike',
+                                    'underline',
+                                    'undo',
+                                ])
+                                ->label('Description')
+                                ->placeholder('Product description')
+                                ->maxLength(65535),
+                            SpatieTagsInput::make('tags')
+                                ->label('Tags')
+                                ->placeholder('Product tags')
+                                ->type('tags')
+                                ->required(),
                         ]),
                         Section::make([
-                        SpatieMediaLibraryFileUpload::make('image')
+                            SpatieMediaLibraryFileUpload::make('image')
                                 ->required()
                                 ->label('Thumbnail')
                                 ->imageEditor()
                                 ->collection('products')
                                 ->image(),
-                        SpatieMediaLibraryFileUpload::make('detailimages')
+                            SpatieMediaLibraryFileUpload::make('detailimages')
                                 ->label('Detail Product Images')
                                 ->collection('productimages')
                                 ->image()
                                 ->imageEditor()
                                 ->required(),
-                        SpatieMediaLibraryFileUpload::make('topimages')
+                            SpatieMediaLibraryFileUpload::make('topimages')
                                 ->label('Top Notes')
                                 ->collection('topnotes')
                                 ->multiple()
@@ -113,7 +119,7 @@ class ProductResource extends Resource
                                 ->hintIcon('heroicon-s-information-circle')
                                 ->required()
                                 ->imageEditor(),
-                        SpatieMediaLibraryFileUpload::make('middleimages')
+                            SpatieMediaLibraryFileUpload::make('middleimages')
                                 ->label('Middle Notes')
                                 ->collection('middlenotes')
                                 ->multiple()
@@ -125,7 +131,7 @@ class ProductResource extends Resource
                                 ->hintIcon('heroicon-s-information-circle')
                                 ->required()
                                 ->imageEditor(),
-                        SpatieMediaLibraryFileUpload::make('baseimages')
+                            SpatieMediaLibraryFileUpload::make('baseimages')
                                 ->label('Base Notes')
                                 ->collection('basenotes')
                                 ->multiple()
@@ -137,7 +143,7 @@ class ProductResource extends Resource
                                 ->hintIcon('heroicon-s-information-circle')
                                 ->required()
                                 ->imageEditor(),
-                        SpatieMediaLibraryFileUpload::make('personalityimages')
+                            SpatieMediaLibraryFileUpload::make('personalityimages')
                                 ->label('Personality')
                                 ->collection('personality')
                                 ->multiple()
@@ -149,16 +155,22 @@ class ProductResource extends Resource
                                 ->hintIcon('heroicon-s-information-circle')
                                 ->required()
                                 ->imageEditor(),
-                        Toggle::make('bestdeal')
-                            ->label('Best Deal')
-                            ->onColor('success')
-                            ->offColor('danger')
+                            Toggle::make('bestdeal')
+                                ->label('Best Deal')
+                                ->onColor('success')
+                                ->offColor('danger')
                         ])
                     ])->from('md')
                 ])
             ]);
     }
 
+    /**
+     * Skema tabel untuk daftar produk.
+     *
+     * @param Table $table
+     * @return Table
+     */
     public static function table(Table $table): Table
     {
         return $table
@@ -171,7 +183,7 @@ class ProductResource extends Resource
                     ->label('Image')
                     ->alignCenter()
                     ->circular(),
-                    SpatieTagsColumn::make('tags')
+                SpatieTagsColumn::make('tags')
                     ->label('Tags')
                     ->type('tags')
                     ->alignCenter(),
@@ -188,30 +200,30 @@ class ProductResource extends Resource
             ])
             ->filters([
                 Filter::make('created_at')
-                ->form([
-                    DatePicker::make('created_from'),
-                    DatePicker::make('created_until'),
-                ])
-                ->indicateUsing(function (array $data): array{
-                    $indicators = [];
+                    ->form([
+                        DatePicker::make('created_from'),
+                        DatePicker::make('created_until'),
+                    ])
+                    ->indicateUsing(function (array $data): array {
+                        $indicators = [];
 
-                    if($data['created_from'] && $data['created_until']) {
-                        $indicators[] = 'Created between' . $data['created_from'] . ' and ' . $data['created_until'];
-                    }
+                        if ($data['created_from'] && $data['created_until']) {
+                            $indicators[] = 'Created between' . $data['created_from'] . ' and ' . $data['created_until'];
+                        }
 
-                    return $indicators;
-                })
-                ->query(function (Builder $query, array $data): Builder {
-                    return $query
-                    ->when(
-                        $data['created_from'],
-                        fn (Builder $query, $date): Builder => $query->whereDate('created_at', '>=', $date),
-                    )
-                    ->when(
-                        $data['created_until'],
-                        fn (Builder $query, $date): Builder => $query->whereDate('created_at', '<=', $date),
-                    );
-                })
+                        return $indicators;
+                    })
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when(
+                                $data['created_from'],
+                                fn(Builder $query, $date): Builder => $query->whereDate('created_at', '>=', $date),
+                            )
+                            ->when(
+                                $data['created_until'],
+                                fn(Builder $query, $date): Builder => $query->whereDate('created_at', '<=', $date),
+                            );
+                    })
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -224,6 +236,11 @@ class ProductResource extends Resource
             ]);
     }
 
+    /**
+     * Daftar relasi yang tersedia untuk resource ini.
+     *
+     * @return array
+     */
     public static function getRelations(): array
     {
         return [
@@ -231,6 +248,11 @@ class ProductResource extends Resource
         ];
     }
 
+    /**
+     * Daftar halaman (pages) yang tersedia untuk resource ini.
+     *
+     * @return array
+     */
     public static function getPages(): array
     {
         return [

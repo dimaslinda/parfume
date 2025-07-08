@@ -19,17 +19,32 @@ class SalesOverview extends Page implements Tables\Contracts\HasTable
 
     protected static ?string $navigationLabel = 'Penjualan dan Poin';
 
+    /**
+     * Judul halaman overview penjualan dan poin.
+     *
+     * @return string
+     */
     public function getTitle(): string
     {
         return 'Data Penjualan dan Poin';
     }
 
+    /**
+     * Query utama untuk tabel user dan summary sales.
+     *
+     * @return Builder
+     */
     protected function getTableQuery(): Builder
     {
         return User::query()
             ->withSum('sales', 'quantity');
     }
 
+    /**
+     * Kolom-kolom yang ditampilkan pada tabel overview.
+     *
+     * @return array
+     */
     protected function getTableColumns(): array
     {
         return [
@@ -46,6 +61,11 @@ class SalesOverview extends Page implements Tables\Contracts\HasTable
         ];
     }
 
+    /**
+     * Aksi-aksi pada tabel overview (misal: tambah poin, detail).
+     *
+     * @return array
+     */
     protected function getTableActions(): array
     {
         return [

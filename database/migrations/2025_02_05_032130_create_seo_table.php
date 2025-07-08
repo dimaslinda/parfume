@@ -6,6 +6,11 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Jalankan migrasi: membuat tabel seo.
+     *
+     * @return void
+     */
     public function up(): void
     {
         Schema::create('seo', function (Blueprint $table) {
@@ -24,6 +29,11 @@ return new class extends Migration
         });
     }
 
+    /**
+     * Rollback migrasi: menghapus tabel seo.
+     *
+     * @return void
+     */
     public function down(): void
     {
         Schema::dropIfExists('seo');

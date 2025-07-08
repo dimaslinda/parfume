@@ -19,6 +19,12 @@ class PermissionResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    /**
+     * Skema form untuk create/edit permission.
+     *
+     * @param Form $form
+     * @return Form
+     */
     public static function form(Form $form): Form
     {
         return $form
@@ -27,6 +33,12 @@ class PermissionResource extends Resource
             ]);
     }
 
+    /**
+     * Skema tabel untuk daftar permission.
+     *
+     * @param Table $table
+     * @return Table
+     */
     public static function table(Table $table): Table
     {
         return $table
@@ -47,6 +59,11 @@ class PermissionResource extends Resource
             ]);
     }
 
+    /**
+     * Daftar halaman (pages) yang tersedia untuk resource ini.
+     *
+     * @return array
+     */
     public static function getPages(): array
     {
         return [

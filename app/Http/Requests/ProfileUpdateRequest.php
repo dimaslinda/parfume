@@ -30,6 +30,11 @@ class ProfileUpdateRequest extends FormRequest
         ];
     }
 
+    /**
+     * Pesan validasi kustom untuk request update profil.
+     *
+     * @return array
+     */
     public function messages()
     {
         return [

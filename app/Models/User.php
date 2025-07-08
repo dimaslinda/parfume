@@ -59,24 +59,6 @@ class User extends Authenticatable implements FilamentUser, HasMedia
         return $this->hasMany(Sales::class);
     }
 
-    public function getRank()
-    {
-        // Menggunakan query mentah untuk menghitung peringkat
-        $points = DB::select(DB::raw('
-            SELECT user_id, points,
-                   RANK() OVER (ORDER BY points DESC) as `rank`
-            FROM points
-        '));
-
-        // Konversi hasil menjadi koleksi Laravel
-        $pointsCollection = collect($points);
-
-        // Cari peringkat pengguna berdasarkan user_id
-        $userRank = $pointsCollection->firstWhere('user_id', $this->id);
-
-        return $userRank ? $userRank->rank : null;
-    }
-
     // Metode untuk mendapatkan tier berdasarkan poin
     public function getTier()
     {

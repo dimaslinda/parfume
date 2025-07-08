@@ -10,6 +10,11 @@ class DownlineGrowthChart extends ChartWidget
 {
     protected static ?string $heading = 'Pertumbuhan Downline per Bulan';
 
+    /**
+     * Ambil data pertumbuhan downline per bulan untuk chart.
+     *
+     * @return array
+     */
     protected function getData(): array
     {
         $downlines = User::whereNotNull('sponsor_id')
@@ -33,6 +38,11 @@ class DownlineGrowthChart extends ChartWidget
         ];
     }
 
+    /**
+     * Opsi chart (warna, label, dsb).
+     *
+     * @return array
+     */
     protected function getOptions(): array
     {
         return [
@@ -78,6 +88,11 @@ class DownlineGrowthChart extends ChartWidget
         ];
     }
 
+    /**
+     * Tipe chart yang digunakan.
+     *
+     * @return string
+     */
     protected function getType(): string
     {
         return 'line';

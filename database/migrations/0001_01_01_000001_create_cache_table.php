@@ -7,7 +7,9 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Jalankan migrasi: membuat tabel cache dan cache_locks.
+     *
+     * @return void
      */
     public function up(): void
     {
@@ -25,7 +27,9 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Rollback migrasi: menghapus tabel cache dan cache_locks.
+     *
+     * @return void
      */
     public function down(): void
     {

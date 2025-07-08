@@ -38,6 +38,12 @@ class UserResource extends Resource
 
     protected static ?string $navigationLabel = 'Data User';
 
+    /**
+     * Skema form untuk create/edit user.
+     *
+     * @param Form $form
+     * @return Form
+     */
     public static function form(Form $form): Form
     {
         return $form
@@ -89,6 +95,12 @@ class UserResource extends Resource
             ]);
     }
 
+    /**
+     * Skema tabel untuk daftar user.
+     *
+     * @param Table $table
+     * @return Table
+     */
     public static function table(Table $table): Table
     {
         return $table
@@ -124,6 +136,11 @@ class UserResource extends Resource
             ]);
     }
 
+    /**
+     * Daftar halaman (pages) yang tersedia untuk resource ini.
+     *
+     * @return array
+     */
     public static function getPages(): array
     {
         return [
@@ -132,6 +149,11 @@ class UserResource extends Resource
         ];
     }
 
+    /**
+     * Daftar relasi yang tersedia untuk resource ini.
+     *
+     * @return array
+     */
     public static function getRelations(): array
     {
         return [
@@ -146,11 +168,23 @@ class PointHistoriesRelationManager extends RelationManager
     protected static string $relationship = 'pointHistories';
     protected static ?string $title = 'Riwayat Poin';
 
+    /**
+     * Form relasi riwayat poin (tidak digunakan).
+     *
+     * @param Form $form
+     * @return Form
+     */
     public function form(Form $form): Form
     {
         return $form->schema([]); // Tidak perlu form create/edit
     }
 
+    /**
+     * Tabel relasi riwayat poin.
+     *
+     * @param Table $table
+     * @return Table
+     */
     public function table(Table $table): Table
     {
         return $table
@@ -172,11 +206,23 @@ class DownlinesRelationManager extends RelationManager
     protected static string $relationship = 'downlines';
     protected static ?string $title = 'Jaringan Downline';
 
+    /**
+     * Form relasi downline (tidak digunakan).
+     *
+     * @param Form $form
+     * @return Form
+     */
     public function form(Form $form): Form
     {
         return $form->schema([]); // Tidak perlu form create/edit
     }
 
+    /**
+     * Tabel relasi downline.
+     *
+     * @param Table $table
+     * @return Table
+     */
     public function table(Table $table): Table
     {
         return $table
@@ -199,12 +245,23 @@ class UserTreeNetworkPage extends Page
     public $record;
     public $tree;
 
+    /**
+     * Mount page dan ambil data tree jaringan user.
+     *
+     * @param int $record
+     * @return void
+     */
     public function mount($record): void
     {
         $this->record = \App\Models\User::findOrFail($record);
         $this->tree = $this->record->downlineTree();
     }
 
+    /**
+     * Judul halaman tree jaringan user.
+     *
+     * @return string
+     */
     public function getTitle(): string
     {
         return 'Tree Jaringan: ' . $this->record->name;

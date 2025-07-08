@@ -7,7 +7,9 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Jalankan migrasi: membuat tabel point_histories.
+     *
+     * @return void
      */
     public function up(): void
     {
@@ -26,7 +28,9 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Rollback migrasi: menghapus tabel point_histories.
+     *
+     * @return void
      */
     public function down(): void
     {

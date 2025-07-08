@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\DB;
 
 class GeneralController extends Controller
 {
+    /**
+     * Tampilkan halaman utama dengan daftar produk dan best deal.
+     * Digunakan untuk landing page.
+     */
     public function index()
     {
         $products = Product::with('media')->paginate(8);
@@ -22,6 +26,9 @@ class GeneralController extends Controller
         return view('index', compact('products', 'bestdeal'));
     }
 
+    /**
+     * Tampilkan halaman daftar produk beserta tag.
+     */
     public function products()
     {
         $products = Product::with('media')->paginate(8);
@@ -29,6 +36,11 @@ class GeneralController extends Controller
         return view('products', compact('products', 'tags'));
     }
 
+    /**
+     * Tampilkan detail produk berdasarkan slug, beserta produk terkait berdasarkan tag.
+     *
+     * @param string $slug
+     */
     public function detailproducts($slug)
     {
         $produk = Product::where('slug', $slug)->first();
@@ -45,13 +57,22 @@ class GeneralController extends Controller
         return view('detailproducts', compact('detailproducts', 'kategoriproducts'));
     }
 
-
+    /**
+     * Tampilkan halaman mitra.
+     */
     public function mitra()
     {
         return view('mitra');
     }
 
-
+    /**
+     * Tampilkan dashboard user, ranking, reward, dan statistik.
+     *
+     * - Mengambil data user login
+     * - Mengambil reward yang bisa diklaim
+     * - Mengurutkan user berdasarkan total_points
+     * - Menghitung ranking user
+     */
     public function dashboard()
     {
         $user = Auth::user();
@@ -85,6 +106,15 @@ class GeneralController extends Controller
         return view('dashboard', compact('user', 'rank', 'rewards', 'claims', 'claimedRewards', 'users'));
     }
 
+    /**
+     * Proses klaim reward oleh user.
+     *
+     * - Cek apakah reward tersedia dan poin cukup
+     * - Kurangi poin user di point_histories
+     * - Buat data klaim baru
+     *
+     * @param int $id ID reward
+     */
     public function claimReward($id)
     {
         $user = Auth::user();
@@ -120,6 +150,9 @@ class GeneralController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * Tampilkan halaman tentang kami.
+     */
     public function aboutus()
     {
         return view('aboutus');

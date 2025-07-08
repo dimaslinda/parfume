@@ -12,7 +12,9 @@ use Illuminate\Validation\ValidationException;
 class LoginRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Cek apakah user diizinkan melakukan request login.
+     *
+     * @return bool
      */
     public function authorize(): bool
     {
@@ -20,7 +22,7 @@ class LoginRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Rule validasi untuk request login.
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
@@ -33,9 +35,10 @@ class LoginRequest extends FormRequest
     }
 
     /**
-     * Attempt to authenticate the request's credentials.
+     * Proses autentikasi user berdasarkan input login.
      *
      * @throws \Illuminate\Validation\ValidationException
+     * @return void
      */
     public function authenticate(): void
     {
@@ -53,9 +56,10 @@ class LoginRequest extends FormRequest
     }
 
     /**
-     * Ensure the login request is not rate limited.
+     * Pastikan request login tidak melebihi rate limit.
      *
      * @throws \Illuminate\Validation\ValidationException
+     * @return void
      */
     public function ensureIsNotRateLimited(): void
     {
@@ -76,10 +80,12 @@ class LoginRequest extends FormRequest
     }
 
     /**
-     * Get the rate limiting throttle key for the request.
+     * Key throttle untuk rate limiting login.
+     *
+     * @return string
      */
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->string('email')).'|'.$this->ip());
+        return Str::transliterate(Str::lower($this->string('email')) . '|' . $this->ip());
     }
 }

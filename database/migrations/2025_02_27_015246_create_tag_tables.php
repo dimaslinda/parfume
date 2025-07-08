@@ -6,6 +6,11 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Jalankan migrasi: membuat tabel tag terkait produk.
+     *
+     * @return void
+     */
     public function up(): void
     {
         Schema::create('tags', function (Blueprint $table) {
@@ -28,6 +33,11 @@ return new class extends Migration
         });
     }
 
+    /**
+     * Rollback migrasi: menghapus tabel tag terkait produk.
+     *
+     * @return void
+     */
     public function down(): void
     {
         Schema::dropIfExists('taggables');

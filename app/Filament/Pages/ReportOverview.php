@@ -18,16 +18,31 @@ class ReportOverview extends Page implements Tables\Contracts\HasTable
     protected static string $view = 'filament.pages.report-overview';
     protected static ?string $navigationLabel = 'Laporan Rekap';
 
+    /**
+     * Judul halaman laporan rekap.
+     *
+     * @return string
+     */
     public function getTitle(): string
     {
         return 'Laporan Rekap MLM';
     }
 
+    /**
+     * Query utama untuk tabel user pada laporan rekap.
+     *
+     * @return Builder
+     */
     protected function getTableQuery(): Builder
     {
         return User::query();
     }
 
+    /**
+     * Kolom-kolom yang ditampilkan pada tabel laporan rekap.
+     *
+     * @return array
+     */
     protected function getTableColumns(): array
     {
         return [
@@ -46,6 +61,11 @@ class ReportOverview extends Page implements Tables\Contracts\HasTable
         ];
     }
 
+    /**
+     * Aksi header pada halaman laporan rekap (misal: export excel).
+     *
+     * @return array
+     */
     public function getHeaderActions(): array
     {
         return [

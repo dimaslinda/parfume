@@ -9,6 +9,11 @@ use App\Models\User;
 
 class RolesAndPermissionsSeeder extends Seeder
 {
+    /**
+     * Seed roles, permissions, dan assign ke user.
+     *
+     * @return void
+     */
     public function run()
     {
         // Create roles
@@ -28,4 +33,3 @@ class RolesAndPermissionsSeeder extends Seeder
         $admin->assignRole('admin');
     }
 }
-

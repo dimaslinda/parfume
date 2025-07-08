@@ -8,6 +8,15 @@ use App\Models\Rewards;
 
 class ClaimsObserver
 {
+    /**
+     * Handle event update pada model Claims.
+     *
+     * - Jika status berubah menjadi 'rejected', kembalikan poin ke user.
+     * - Jika status berubah dari 'rejected' ke status lain, kurangi poin user kembali.
+     *
+     * @param Claims $claim
+     * @return void
+     */
     public function updated(Claims $claim)
     {
         if ($claim->isDirty('status') && $claim->status === 'rejected') {

@@ -22,6 +22,12 @@ class RoleResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-user-circle';
 
+    /**
+     * Skema form untuk create/edit role.
+     *
+     * @param Form $form
+     * @return Form
+     */
     public static function form(Form $form): Form
     {
         return $form
@@ -34,6 +40,12 @@ class RoleResource extends Resource
             ]);
     }
 
+    /**
+     * Skema tabel untuk daftar role.
+     *
+     * @param Table $table
+     * @return Table
+     */
     public static function table(Table $table): Table
     {
         return $table
@@ -56,6 +68,11 @@ class RoleResource extends Resource
             ]);
     }
 
+    /**
+     * Daftar halaman (pages) yang tersedia untuk resource ini.
+     *
+     * @return array
+     */
     public static function getPages(): array
     {
         return [

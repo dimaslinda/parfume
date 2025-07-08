@@ -10,6 +10,11 @@ class RewardRedeemChart extends ChartWidget
 {
     protected static ?string $heading = 'Reward Redeem per Bulan';
 
+    /**
+     * Ambil data reward redeem per bulan untuk chart.
+     *
+     * @return array
+     */
     protected function getData(): array
     {
         $claims = Claims::select(DB::raw('DATE_FORMAT(created_at, "%Y-%m") as bulan'), DB::raw('COUNT(*) as total'))
@@ -31,6 +36,11 @@ class RewardRedeemChart extends ChartWidget
         ];
     }
 
+    /**
+     * Opsi chart (warna, label, dsb).
+     *
+     * @return array
+     */
     protected function getOptions(): array
     {
         return [
@@ -76,6 +86,11 @@ class RewardRedeemChart extends ChartWidget
         ];
     }
 
+    /**
+     * Tipe chart yang digunakan.
+     *
+     * @return string
+     */
     protected function getType(): string
     {
         return 'bar';

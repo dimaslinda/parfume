@@ -10,6 +10,11 @@ class SalesChart extends ChartWidget
 {
     protected static ?string $heading = 'Grafik Penjualan per Bulan';
 
+    /**
+     * Ambil data penjualan per bulan untuk chart.
+     *
+     * @return array
+     */
     protected function getData(): array
     {
         $sales = Sales::select(
@@ -31,6 +36,11 @@ class SalesChart extends ChartWidget
         ];
     }
 
+    /**
+     * Tipe chart yang digunakan.
+     *
+     * @return string
+     */
     protected function getType(): string
     {
         return 'line'; // atau 'bar'

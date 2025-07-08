@@ -26,17 +26,33 @@ class SalesForm extends Page implements Forms\Contracts\HasForms
     protected static string $view = 'filament.pages.sales-form';
     protected static ?string $navigationLabel = 'Form Total Penjualan';
 
+    /**
+     * Mount page dan set user_id jika ada.
+     *
+     * @param int|null $user
+     * @return void
+     */
     public function mount($user = null): void
     {
         $this->user_id = $user;
     }
     public bool $isLoading = false;
 
+    /**
+     * Judul halaman form penjualan.
+     *
+     * @return string
+     */
     public function getTitle(): string
     {
         return 'Form Rekap Total Penjualan perhari';
     }
 
+    /**
+     * Skema form input penjualan.
+     *
+     * @return array
+     */
     protected function getFormSchema(): array
     {
         return [
@@ -57,6 +73,11 @@ class SalesForm extends Page implements Forms\Contracts\HasForms
         ];
     }
 
+    /**
+     * Proses submit form penjualan dan pencatatan poin.
+     *
+     * @return void
+     */
     public function submit(): void
     {
         $data = $this->form->getState();
@@ -125,6 +146,11 @@ class SalesForm extends Page implements Forms\Contracts\HasForms
         $this->redirect(route('filament.pages.sales-overview'));
     }
 
+    /**
+     * Hitung jumlah poin per penjualan.
+     *
+     * @return int
+     */
     protected function calculatePointsPerSale()
     {
         return 25;

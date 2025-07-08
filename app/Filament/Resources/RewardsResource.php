@@ -29,6 +29,12 @@ class RewardsResource extends Resource
 
     protected static ?string $navigationLabel = 'Data Reward Yang Tersedia';
 
+    /**
+     * Skema form untuk create/edit reward.
+     *
+     * @param Form $form
+     * @return Form
+     */
     public static function form(Form $form): Form
     {
         return $form
@@ -54,16 +60,22 @@ class RewardsResource extends Resource
                         ->label('Poin')
                         ->placeholder('Poin'),
                 ]),
-            Card::make([
-                SpatieMediaLibraryFileUpload::make('reward_image')
-                    ->collection('rewards')
-                    ->required()
-                    ->label('Gambar Reward')
-                    ->image(),
-            ])
+                Card::make([
+                    SpatieMediaLibraryFileUpload::make('reward_image')
+                        ->collection('rewards')
+                        ->required()
+                        ->label('Gambar Reward')
+                        ->image(),
+                ])
             ]);
     }
 
+    /**
+     * Skema tabel untuk daftar reward.
+     *
+     * @param Table $table
+     * @return Table
+     */
     public static function table(Table $table): Table
     {
         return $table
@@ -95,6 +107,11 @@ class RewardsResource extends Resource
             ]);
     }
 
+    /**
+     * Daftar halaman (pages) yang tersedia untuk resource ini.
+     *
+     * @return array
+     */
     public static function getPages(): array
     {
         return [

@@ -7,7 +7,9 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Jalankan migrasi: membuat tabel users, password_reset_tokens, dan sessions.
+     *
+     * @return void
      */
     public function up(): void
     {
@@ -39,7 +41,9 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Rollback migrasi: menghapus tabel users, password_reset_tokens, dan sessions.
+     *
+     * @return void
      */
     public function down(): void
     {
