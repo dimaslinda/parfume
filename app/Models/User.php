@@ -161,7 +161,11 @@ class User extends Authenticatable implements FilamentUser, HasMedia
     }
 
     /**
-     * Ambil seluruh jaringan downline (tree) user secara rekursif.
+     * Mengambil seluruh jaringan downline (tree) user secara rekursif.
+     *
+     * @param int $maxDepth Batas kedalaman tree (default 5)
+     * @param int $currentDepth Kedalaman saat ini (default 1)
+     * @return \Illuminate\Support\Collection Koleksi user downline beserta tree-nya
      */
     public function downlineTree($maxDepth = 5, $currentDepth = 1)
     {

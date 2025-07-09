@@ -128,6 +128,11 @@ class UserResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
+                \Filament\Tables\Actions\Action::make('treeNetwork')
+                    ->label('Lihat Jaringan')
+                    ->icon('heroicon-o-share')
+                    ->url(fn($record) => "/secret/users/{$record->id}/tree-network")
+                    ->openUrlInNewTab(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -1,6 +1,4 @@
-@extends('filament::page')
-
-@section('content')
+<x-filament::page>
     <h2 class="mb-4 text-xl font-bold">Tree Jaringan: {{ $record->name }}</h2>
     <div>
         @if ($tree->isEmpty())
@@ -13,4 +11,4 @@
             </ul>
         @endif
     </div>
-@endsection
+</x-filament::page>
