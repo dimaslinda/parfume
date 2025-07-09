@@ -131,6 +131,21 @@ class SalesForm extends Page implements Forms\Contracts\HasForms
                     'type' => 'downline_sale',
                     'description' => 'Poin dari penjualan downline: ' . $user->name,
                 ]);
+
+                // Cek sponsor level 2 (upline dari sponsor)
+                $sponsor1 = User::find($user->sponsor_id);
+                if ($sponsor1 && $sponsor1->sponsor_id) {
+                    $upline2Points = (int) round($uplinePoints * 0.1);
+                    if ($upline2Points > 0) {
+                        PointHistory::create([
+                            'user_id' => $sponsor1->sponsor_id,
+                            'source_user_id' => $sponsor1->id,
+                            'amount' => $upline2Points,
+                            'type' => 'downline_sale',
+                            'description' => 'Poin dari penjualan downline level 2: ' . $sponsor1->name,
+                        ]);
+                    }
+                }
             }
         }
 
